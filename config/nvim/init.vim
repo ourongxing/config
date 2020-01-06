@@ -117,9 +117,6 @@ noremap <LEADER><CR> :nohlsearch<CR>
 " Autoformat
 nnoremap \f :Autoformat<CR>
 
-" Markdown snippets
-source ~/.config/nvim/md-snippets.vim
-
 " ===
 " === Window management
 " ===
@@ -156,6 +153,11 @@ noremap srv <C-w>b<C-w>H
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
+
+" =================================
+" ======= Markdown Setting ========
+" =================================
+source ~/.config/nvim/markdown.vim
 
 " =================================
 " = Install Plugins with Vim-Plug =
