@@ -78,13 +78,11 @@ call plug#begin('~/.config/nvim/plug')
 Plug 'morhetz/gruvbox'
 call plug#end()
 colorscheme gruvbox
-
 " =================================
 " ======== Basic Mappings =========
 " =================================
 " Compile function
 source ~/.config/nvim/code-compile.vim
-noremap r :call CompileRunGcc()<CR>
 
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
