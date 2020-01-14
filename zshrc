@@ -18,7 +18,7 @@ alias s='screenfetch'
 alias cat='ccat'
 alias bat='tlp bat'
 alias ac='tlp ac'
-alias gitpush='bash ~/.zsh/git-push.sh'
+alias lg='lazygit'
 alias hexod="bash ~/orxing-blog/hexo-deploy.sh"
 # don't use rm
 alias tp='trash-put'           # trash files and directories.
@@ -92,3 +92,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 KEYTIMEOUT=1
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi

@@ -4,8 +4,6 @@
 " \___/ \__,_|_|  \___/|_| |_|\__, /_/\_\_|_| |_|\__, |
 "                             |___/              |___/
 " Author: @ourongxing & @theniceboy
-
-
 " ===
 " === Auto load for first time uses
 " ===
@@ -31,7 +29,7 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 " === System
 " ===
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 let &t_ut=''
 set autochdir
 
@@ -74,10 +72,6 @@ set visualbell
 "set colorcolumn=80
 set updatetime=1000
 let g:deoplete#enable_at_startup = 1
-call plug#begin('~/.config/nvim/plug')
-Plug 'morhetz/gruvbox'
-call plug#end()
-colorscheme gruvbox
 " =================================
 " ======== Basic Mappings =========
 " =================================
@@ -152,15 +146,20 @@ noremap srv <C-w>b<C-w>H
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
 
-" =================================
-" ======= Markdown Setting ========
-" =================================
-source ~/.config/nvim/markdown.vim
+" markdown snippets
+source ~/.config/nvim/md-snippets.vim
 
+" clipboard
+vnoremap y "+y
+vnoremap Y "+Y
+
+" C/C++ ';'  at the end
+inoremap ,; <Esc>l$a;<CR>
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================
 source ~/.config/nvim/plug-list.vim
+colorscheme gruvbox
 
 " ===============================
 " ======== Plug Setup ===========
