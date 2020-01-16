@@ -1,2 +1,1 @@
-# linux_configs
-some configs in linux
+## some configs on linux

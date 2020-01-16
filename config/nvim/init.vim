@@ -44,13 +44,16 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+set go=
+set helplang=cn
 set list
 set listchars=tab:\|\ ,trail:▫
 set scrolloff=4
 set ttimeoutlen=0
 set notimeout
 set viewoptions=cursor,folds,slash,unix
-set wrap
+set wrap "自动换行
+set linebreak "整字换行
 set tw=0
 set indentexpr=
 set foldmethod=indent
