@@ -91,7 +91,3 @@ precmd_functions+=(_fix_cursor)
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-KEYTIMEOUT=1
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
