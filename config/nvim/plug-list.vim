@@ -69,5 +69,6 @@ Plug 'tweekmonster/braceless.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'theniceboy/bullets.vim'
-
+" pug
+Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug'] }
 call plug#end()
