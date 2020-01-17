@@ -5,6 +5,7 @@ eval $(thefuck --alias)
 export ZSH="/home/orongxing/.oh-my-zsh"
 export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize
 export PATH="/home/orongxing/miniconda3/envs/python36/bin:$PATH"  # commented out by conda initialize
+export PATH="/home/orongxing/miniconda3/envs/python27/bin:$PATH"  # commented out by conda initialize
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
 export RANGER_LOAD_DEFAULT_RC="false"
