@@ -1,4 +1,4 @@
-noremap r :call CompileRunGcc()<CR>
+" noremap r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'

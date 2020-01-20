@@ -96,21 +96,13 @@ noremap <LEADER>st :Startify<CR>
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Press space twice to jump to the next '<++>' and edit it
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-
-" Space to Tab
-" nnoremap <LEADER>tt :%s/    /\t/g
-" vnoremap <LEADER>tt :s/    /\t/g
+noremap <silent> <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " Open up lazygit
-noremap \g :term lazygit<CR>
 noremap <c-g> :term lazygit<CR>
 
 " Remove search highlighting
-noremap <LEADER><CR> :nohlsearch<CR>
-
-" Autoformat
-nnoremap \f :Autoformat<CR>
+noremap <silent> <LEADER><CR> :nohlsearch<CR>
 
 " ===
 " === Window management
@@ -154,10 +146,12 @@ source ~/.config/nvim/md-snippets.vim
 
 " clipboard
 vnoremap y "+y
-vnoremap Y "+Y
+noremap <leader>p "+p
 
 " C/C++ ';'  at the end
-inoremap ,; <Esc>l$a;<CR>
+autocmd filetype c inoremap ,; <Esc>A;<CR>
+autocmd filetype cpp inoremap ,; <Esc>A;<CR>
+
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================

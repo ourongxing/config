@@ -21,39 +21,59 @@ let NERDTreeMapToggleHidden = "zh"
 " ===
 " === FZF
 " ===
-noremap <C-p> :FZF<CR>
-" you can search text from all file, please install the_silver_searcher
+" 查找文件
+noremap <C-s> :FZF<CR>
+" 查找文件内容
 noremap <C-f> :Ag<CR>
+" 历史打开的文件
 noremap <C-h> :MRU<CR>
-noremap <C-t> :BTags<CR>
-noremap <C-l> :LinesWithPreview<CR>
-" noremap <C-w> :Buffers<CR>
-noremap q; :History:<CR>
+" 查找tag
+noremap <C-d> :BTags<CR>
+" 跳转打开的文件
+noremap <C-g> :Buffers<CR>
+" 预览每一行
+noremap <C-a> :LinesWithPreview<CR>
+" 历史命令
+noremap <C-q> :History:<CR>
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noruler
-\| autocmd BufLeave <buffer> set laststatus=2 ruler
+			\| autocmd BufLeave <buffer> set laststatus=2 ruler
 
 command! -bang -nargs=* Buffers
-\ call fzf#vim#buffers(
-\   '',
-\   <bang>0 ? fzf#vim#with_preview('up:60%')
-\           : fzf#vim#with_preview('right:0%', '?'),
-\   <bang>0)
+			\ call fzf#vim#buffers(
+			\   '',
+			\   <bang>0 ? fzf#vim#with_preview('up:60%')
+			\           : fzf#vim#with_preview('right:0%', '?'),
+			\   <bang>0)
 
 
 command! -bang -nargs=* LinesWithPreview
-    \ call fzf#vim#grep(
-    \   'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
-    \   fzf#vim#with_preview({}, 'up:50%', '?'),
-    \   1)
+			\ call fzf#vim#grep(
+			\   'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
+			\   fzf#vim#with_preview({}, 'up:50%', '?'),
+			\   1)
 
 command! -bang -nargs=* Ag
-\ call fzf#vim#ag(
-\   '',
-\   <bang>0 ? fzf#vim#with_preview('up:60%')
-\           : fzf#vim#with_preview('right:50%', '?'),
-\   <bang>0)
+			\ call fzf#vim#ag(
+			\   '',
+			\   <bang>0 ? fzf#vim#with_preview('up:60%')
+			\           : fzf#vim#with_preview('right:50%', '?'),
+			\   <bang>0)
+
+command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
+
+command! -bang BTags
+			\ call fzf#vim#buffer_tags('', {
+			\     'down': '40%',
+			\     'options': '--with-nth 1
+			\                 --reverse
+			\                 --prompt "> "
+			\                 --preview-window="70%"
+			\                 --preview "
+			\                     tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
+			\                     head -n 16"'
+			\ })
 
 " ===
 " === coc
@@ -69,16 +89,16 @@ function! s:check_back_space() abort
 endfunction
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 let g:LanguageClient_serverCommands = {
-    \ 'sh': ['bash-language-server', 'start']
-    \ }
+			\ 'sh': ['bash-language-server', 'start']
+			\ }
 
 inoremap <silent><expr> <Tab>
 			\ pumvisible() ? "\<C-n>" :
 			\ <SID>check_back_space() ? "\<Tab>" :
 			\ coc#refresh()
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
 
@@ -123,25 +143,25 @@ let g:ranger_map_keys = 0
 " === vim-map-leader
 " ===
 let g:leaderMenu = {'name':  "Shortcut Menu",
-\'SPC f':  ['Advanced find'],
-\'SPC rc': ['Edit nvim config'],
-\'SPC Enter':  ['Clear search'],
-\'SPC dw':  ['Remove adj. dup. words'],
-\'SPC tt':  ['spc to tabs'],
-\'SPC o':  ['Open folds'],
-\'SPC q':  ['Close win below'],
-\'SPC /':  ['Open terminal'],
-\'SPC <SPC>':  ['Find <++>'],
-\'SPC sc':  ['Toggle spell-check'],
-\'SPC gf':  ['Fold unchanged'],
-\'SPC g-':  ['Previous hunk'],
-\'SPC g=':  ['Next Hunk'],
-\'SPC rn':  ['Rename variable'],
-\'SPC tm':  ['Toggle table-mode'],
-\'SPC a':  ['Calculate equation'],
-\'SPC gi':  ['New .gitignore'],
-\'SPC gy':  ['Toggle focus mode'],
-\}
+			\'SPC f':  ['Advanced find'],
+			\'SPC rc': ['Edit nvim config'],
+			\'SPC Enter':  ['Clear search'],
+			\'SPC dw':  ['Remove adj. dup. words'],
+			\'SPC tt':  ['spc to tabs'],
+			\'SPC o':  ['Open folds'],
+			\'SPC q':  ['Close win below'],
+			\'SPC /':  ['Open terminal'],
+			\'SPC <SPC>':  ['Find <++>'],
+			\'SPC sc':  ['Toggle spell-check'],
+			\'SPC gf':  ['Fold unchanged'],
+			\'SPC g-':  ['Previous hunk'],
+			\'SPC g=':  ['Next Hunk'],
+			\'SPC rn':  ['Rename variable'],
+			\'SPC tm':  ['Toggle table-mode'],
+			\'SPC a':  ['Calculate equation'],
+			\'SPC gi':  ['New .gitignore'],
+			\'SPC gy':  ['Toggle focus mode'],
+			\}
 nnoremap <silent> ? :call leaderMapper#start() "<Space>"<CR>
 let g:leaderMapperWidth = 50
 
@@ -155,14 +175,10 @@ nnoremap <silent> <F9> :call codelf#start()<CR>
 " == vim-multiple-cursor
 " ==
 let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_word_key = '<c-k>'
-let g:multi_cursor_select_all_word_key = '<a-k>'
-let g:multi_cursor_start_key = 'g<c-k>'
-let g:multi_cursor_select_all_key = 'g<a-k>'
-let g:multi_cursor_next_key = '<c-k>'
-let g:multi_cursor_prev_key = '<c-p>'
-let g:multi_cursor_skip_key = '<C-s>'
-let g:multi_cursor_quit_key = '<Esc>'
+let g:multi_cursor_next_key='<C-k>'
+let g:multi_cursor_prev_key='<C-j>'
+let g:multi_cursor_skip_key='<C-l>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " ==
 " == markdown preview
@@ -189,13 +205,29 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
+" ===
+" === vim-table-mode
+" ===
+
 " ==
 " == airline
 " ==
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='bubblegum'
+
+" ==
+" == bullets
+" ==
+let g:bullets_enabled_file_types = [
+			\ 'markdown',
+			\ 'text',
+			\ 'gitcommit',
+			\ 'scratch'
+			\]
+
 " ==
 " == autformat
 " ==
-noremap <LEADER>bb :Autoformat<CR>
+noremap \f :Autoformat<CR>
 let g:autoformat_verbosemode=1
+

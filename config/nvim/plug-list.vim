@@ -1,4 +1,3 @@
-" ==
 call plug#begin('~/.config/nvim/plug')
 " theme
 Plug 'ryanoasis/vim-devicons'
@@ -15,7 +14,7 @@ Plug 'mbbill/undotree'
 " git plug
 Plug 'tpope/vim-fugitive'
 
-" auto change fcitx
+" auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
 
 " Auto Complete
@@ -66,9 +65,12 @@ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-p
 Plug 'tweekmonster/braceless.vim'
 
 " Markdown
+" Plug 'godlygeek/tabular', {'for' :['markdown', 'vim-plug'] }
+" Plug 'plasticboy/vim-markdown', {'for' :['markdown', 'vim-plug'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'theniceboy/bullets.vim'
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for' :['markdown', 'vim-plug'] }
+Plug 'dkarter/bullets.vim'
+
 " pug
 Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug'] }
 call plug#end()

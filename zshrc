@@ -28,9 +28,9 @@ alias tl='trash-list'          # list trashed files.
 alias tr='trash-restore'       # restore a trashed file.
 # trash-rm            # remove individual files from the trashcan.
 
-ZSH_THEME=""
-autoload -U promptinit; promptinit
-prompt pure
+ZSH_THEME="astro"
+# autoload -U promptinit; promptinit
+# prompt pure
 
 plugins=(extract last-working-dir zsh-autosuggestions autojump extract zsh-syntax-highlighting thefuck vi-mode)
 
