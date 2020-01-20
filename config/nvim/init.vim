@@ -85,10 +85,6 @@ source ~/.config/nvim/code-compile.vim
 let mapleader=" "
 noremap ; :
 
-" Save & quit
-noremap Q :q<CR>
-noremap W :w<CR>
-
 " Open Startify
 noremap <LEADER>st :Startify<CR>
 
@@ -104,39 +100,41 @@ noremap <c-g> :term lazygit<CR>
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
 
+
 " ===
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
-noremap <LEADER>k <C-w>k
-noremap <LEADER>j <C-w>j
-noremap <LEADER>h <C-w>h
-noremap <LEADER>l <C-w>l
+" noremap <LEADER>w <C-w>w
+" noremap <LEADER>k <C-w>k
+" noremap <LEADER>j <C-w>j
+" noremap <LEADER>h <C-w>h
+" noremap <LEADER>l <C-w>l
 
 " Disable the default s key
 " noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap sh :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap sj :set splitbelow<CR>:split<CR>
-noremap sk :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap sl :set splitright<CR>:vsplit<CR>
+" noremap sh :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+" noremap sj :set splitbelow<CR>:split<CR>
+" noremap sk :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+" noremap sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-noremap <LEADER><up> :res +5<CR>
-noremap <LEADER><down> :res -5<CR>
-noremap <LEADER><left> :vertical resize-5<CR>
-noremap <LEADER><right> :vertical resize+5<CR>
+" noremap <LEADER><up> :res +5<CR>
+" noremap <LEADER><down> :res -5<CR>
+" noremap <LEADER><left> :vertical resize-5<CR>
+" noremap <LEADER><right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+" noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+" noremap sv <C-w>t<C-w>H
 
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+" noremap srh <C-w>b<C-w>K
+" noremap srv <C-w>b<C-w>H
+
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
@@ -151,6 +149,15 @@ noremap <leader>p "+p
 " C/C++ ';'  at the end
 autocmd filetype c inoremap ,; <Esc>A;<CR>
 autocmd filetype cpp inoremap ,; <Esc>A;<CR>
+
+" save when you did't use sudo
+cnoremap sw w !sudo tee >/dev/null %
+
+" inner termial esc
+" tnoremap <Esc> <C-\><C-n>
+
+" 
+nnoremap w b
 
 " =================================
 " = Install Plugins with Vim-Plug =

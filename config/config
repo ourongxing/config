@@ -72,5 +72,5 @@ memory {
 }
 
 tztime local {
-        format = "📅 %Y-%m-%d %A 🕑 %H:%M:%S"
+        format = "📅 %Y-%m-%d %A 🕑 %H:%M"
 }

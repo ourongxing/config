@@ -222,7 +222,7 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper/2.jpg
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id st
 exec volumeicon
-exec fcitx
+exec_always fcitx
 exec --no-startup-id v2raya
 exec --no-startup-id xfce4-power-manager
 bindsym --release Print exec flameshot gui
