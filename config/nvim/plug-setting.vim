@@ -119,7 +119,7 @@ nmap <Leader>t <Plug>(coc-translator-p)
 " ===
 " === Undotree
 " ===
-noremap L :UndotreeToggle<CR>
+noremap ty :UndotreeToggle<CR>
 let g:undotree_DiffAutoOpen = 1
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_ShortIndicators = 1
@@ -230,4 +230,3 @@ let g:bullets_enabled_file_types = [
 " ==
 noremap \f :Autoformat<CR>
 let g:autoformat_verbosemode=1
-
