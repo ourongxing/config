@@ -21,7 +21,7 @@ order += "wireless _first_"
 order += "battery 0"
 order += "disk /"
 #order += "load"
-order += "cpu_usage"
+#order += "cpu_usage"
 order += "memory"
 order += "tztime local"
 
@@ -40,11 +40,11 @@ battery all {
 }
 
 battery 0 {
-        format = "%status %percentage %remaining"
+        format = " %percentage %status"
 		last_full_capacity = true
 		format_down = "No battery"
 		status_chr = "⚡ AC"
-		status_bat = "  BAT"
+		status_bat = "🔋 BAT"
         status_unk = "⚡ AC"
         status_full = "🔋 FULL"
         path = "/sys/class/power_supply/BAT%d/uevent"
@@ -72,5 +72,5 @@ memory {
 }
 
 tztime local {
-        format = "📅 %Y-%m-%d %A 🕑 %H:%M"
+        format = "📅 %Y-%m-%d %A 🕑 %H:%M |"
 }

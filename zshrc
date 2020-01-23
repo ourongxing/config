@@ -44,7 +44,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_COMPLETION_TRIGGER='\'
 export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # nvm
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVM_DIR="$HOME/.nvm"

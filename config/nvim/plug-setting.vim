@@ -6,17 +6,13 @@ let g:airline_powerline_fonts = 0
 noremap tt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl = ""
 "let NERDTreeMapUpdir = "N"
-"let NERDTreeMapUpdirKeepOpen = "n"
+let NERDTreeMapUpdirKeepOpen = "h"
 "let NERDTreeMapOpenSplit = ""
-"let NERDTreeMapOpenVSplit = "I"
-"let NERDTreeMapActivateNode = "i"
-"let NERDTreeMapOpenInTab = "o"
-"let NERDTreeMapOpenInTabSilent = "O"
-"let NERDTreeMapPreview = ""
-"let NERDTreeMapCloseDir = ""
-"let NERDTreeMapChangeRoot = "l"
+let NERDTreeMapOpenVSplit = "L"
+let NERDTreeMapActivateNode = "l"
+let NERDTreeMapChangeRoot = "l"
 let NERDTreeMapMenu = ","
-let NERDTreeMapToggleHidden = "zh"
+let NERDTreeMapToggleHidden = "<backspace>"
 
 " ===
 " === FZF
@@ -28,11 +24,11 @@ noremap <C-f> :Ag<CR>
 " 历史打开的文件
 noremap <C-h> :MRU<CR>
 " 查找tag
-noremap <C-d> :BTags<CR>
+noremap <C-t> :BTags<CR>
 " 跳转打开的文件
-noremap <C-g> :Buffers<CR>
+noremap <C-b> :Buffers<CR>
 " 预览每一行
-noremap <C-a> :LinesWithPreview<CR>
+" noremap <C-> :LinesWithPreview<CR>
 " 历史命令
 noremap <C-q> :History:<CR>
 
@@ -105,15 +101,16 @@ let g:coc_snippet_next = '<tab>'
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+" 剪贴板
+nnoremap <silent> <leader>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
+" 查看定义
 nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-
-" ===coc-translator===
-" popup
+" 用于修改变量名字，超级好用
+nmap <silent> <leader>rn <Plug>(coc-rename)
+" 翻译
 nmap <Leader>t <Plug>(coc-translator-p)
 
 " ===
@@ -127,10 +124,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-	nmap <buffer> u <plug>UndotreeNextState
-	nmap <buffer> e <plug>UndotreePreviousState
-	nmap <buffer> U 5<plug>UndotreeNextState
-	nmap <buffer> E 5<plug>UndotreePreviousState
+	nmap <buffer> k <plug>UndotreeNextState
+	nmap <buffer> j <plug>UndotreePreviousState
+	nmap <buffer> K 5<plug>UndotreeNextState
+	nmap <buffer> J 5<plug>UndotreePreviousState
 endfunc
 
 " ===
@@ -165,19 +162,14 @@ let g:leaderMenu = {'name':  "Shortcut Menu",
 nnoremap <silent> ? :call leaderMapper#start() "<Space>"<CR>
 let g:leaderMapperWidth = 50
 
-" ===
-" === Codelf
-" ===
-inoremap <silent> <F9> <C-R>=codelf#start()<CR>
-nnoremap <silent> <F9> :call codelf#start()<CR>
-
 " ==
+"  o
 " == vim-multiple-cursor
 " ==
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-k>'
-let g:multi_cursor_prev_key='<C-j>'
-let g:multi_cursor_skip_key='<C-l>'
+let g:ulti_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-k>'
+"let g:multi_cursor_prev_key='<C-j>'
+"let g:multi_cursor_skip_key='<C-l>'
 let g:multi_cursor_quit_key='<Esc>'
 
 " ==
@@ -205,10 +197,6 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
-" ===
-" === vim-table-mode
-" ===
-
 " ==
 " == airline
 " ==
@@ -228,5 +216,5 @@ let g:bullets_enabled_file_types = [
 " ==
 " == autformat
 " ==
-noremap \f :Autoformat<CR>
+noremap <Leader>f :Autoformat<CR>
 let g:autoformat_verbosemode=1

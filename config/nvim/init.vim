@@ -56,7 +56,7 @@ set ttimeoutlen=0
 set notimeout
 set viewoptions=cursor,folds,slash,unix
 set wrap "自动换行
-set linebreak "整字换行
+" set linebreak "整字换行
 set tw=0
 set indentexpr=
 set foldmethod=indent
@@ -78,13 +78,19 @@ set visualbell
 "set colorcolumn=80
 set updatetime=1000
 let g:deoplete#enable_at_startup = 1
+
+" ===============================
+" ======== Plug Setup ===========
+" ===============================
+source ~/.config/nvim/plug-setting.vim
+
 " =================================
 " ======== Basic Mappings =========
 " =================================
 " Compile function
 source ~/.config/nvim/code-compile.vim
 
-" Set <LEADER> as <SPACE>, ; as :
+" Set <LEADER> as <SPACE>
 let mapleader=" "
 noremap ; :
 
@@ -94,15 +100,11 @@ noremap <LEADER>st :Startify<CR>
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
-" Press space twice to jump to the next '<++>' and edit it
-noremap <silent> <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-
 " Open up lazygit
 noremap <c-g> :term lazygit<CR>
 
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
-
 
 " ===
 " === Window management
@@ -138,6 +140,7 @@ noremap zrv <C-w>b<C-w>H
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
+noremap S <C-w>j:w<CR>
 
 " markdown snippets
 source ~/.config/nvim/md-snippets.vim
@@ -155,23 +158,31 @@ cnoremap sw w !sudo tee >/dev/null %
 " inner termial esc
 " tnoremap <Esc> <C-\><C-n>
 
-inoremap <C-S-k> <Up>
-inoremap <C-S-j> <Down>
-inoremap <C-S-h> <Left>
-inoremap <C-S-l> <Right>
-
 noremap H ^
 noremap L $
+
+noremap U <C-r>
+
+" Adjacent duplicate words
+noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
+
+noremap <LEADER><LEADER> <Esc>  
+
+" Spelling Check with <space>sc
+noremap <LEADER>sc :set spell!<CR>
+
+" Press ` to change case (instead of ~)
+" 快速切换首字母大小写
+" ~的作用就是切换大小写
+noremap ` b~
+
+" Auto change directory to current dir
+autocmd BufEnter * silent! lcd %:p:h
 
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================
 source ~/.config/nvim/plug-list.vim
 colorscheme gruvbox
-
-" ===============================
-" ======== Plug Setup ===========
-" ===============================
-source ~/.config/nvim/plug-setting.vim
-
+set background=dark
 

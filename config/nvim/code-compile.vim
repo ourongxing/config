@@ -17,6 +17,7 @@ func! CompileRunGcc()
 	elseif &filetype == 'python'
 		set splitbelow
 		:sp
+		:res -15
 		:term python3 %
 	elseif &filetype == 'html'
 		silent! exec "!firefox % &"

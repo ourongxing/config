@@ -37,9 +37,6 @@ Plug 'rbgrouleff/bclose.vim'
 " Bracket completion
 Plug 'tpope/vim-surround'
 
-" code named
-Plug 'voldikss/vim-codelf'
-
 " multiple cursor
 Plug 'terryma/vim-multiple-cursors'
 

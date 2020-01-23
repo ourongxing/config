@@ -1,6 +1,8 @@
 autocmd Filetype markdown inoremap <buffer> <silent> ,, <++>
 autocmd Filetype markdown inoremap <buffer> <silent> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown nnoremap <buffer> <silent> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap <buffer> <silent> ,s <Esc>/ <++><CR>:nohlsearch<CR>c5l
+autocmd Filetype markdown nnoremap <buffer> <silent> ,s <Esc>/ <++><CR>:nohlsearch<CR>c5l
 autocmd Filetype markdown inoremap <buffer> <silent> ,- ---<Enter><Enter>
 autocmd Filetype markdown inoremap <buffer> <silent> ,b **** <++><Esc>F*hi
 autocmd Filetype markdown inoremap <buffer> <silent> ,x ~~~~ <++><Esc>F~hi
