@@ -4,3 +4,9 @@ let g:python_host_prog='/home/orongxing/miniconda3/envs/python27/bin/python'
 let g:python3_host_prog='/home/orongxing/miniconda3/envs/python36/bin/python'
 " markdown_preview
 let g:mkdp_browser = 'surf'
+
+" what else you should do
+" npm install -g neovim
+" pip install pynvim
+" pip3 install pynvim
+
