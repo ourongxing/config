@@ -32,7 +32,6 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 
 " set clipboard=unnamedplus
-
 " set the <leader> = backspace
 let &t_ut=''
 set autochdir
@@ -80,16 +79,26 @@ set visualbell
 set updatetime=1000
 let g:deoplete#enable_at_startup = 1
 
-" ===============================
-" ======== Plug Setup ===========
-" ===============================
-source ~/.config/nvim/plug-setting.vim
+" when python
+let python_highlight_all=1
+autocmd Filetype python set tabstop=4
+autocmd Filetype python set softtabstop=4
+autocmd Filetype python set shiftwidth=4
+autocmd Filetype python set textwidth=79
+autocmd Filetype python set expandtab
+autocmd Filetype python set autoindent
+autocmd Filetype python set fileformat=unix
+autocmd Filetype python set foldmethod=indent
+autocmd Filetype python set foldlevel=99
 
 " =================================
 " ======== Basic Mappings =========
 " =================================
 " Compile function
 source ~/.config/nvim/code-compile.vim
+
+" Markdown snippets
+source ~/.config/nvim/md-snippets.vim
 
 " Set <LEADER> as <SPACE>
 let mapleader=" "
@@ -106,6 +115,40 @@ noremap <c-g> :term lazygit<CR>
 
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
+
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" Press <SPACE> + q to close the window below the current window
+noremap <LEADER>q <C-w>j:q<CR>
+noremap S <C-w>j:w<CR>
+
+" Clipboard
+vnoremap y "+y
+
+" C/C++ ';'  at the end
+autocmd filetype c inoremap ,; <Esc>A;<CR>
+autocmd filetype cpp inoremap ,; <Esc>A;<CR>
+
+" Save when you did't use sudo
+cnoremap sw w !sudo tee >/dev/null %
+
+" inner termial esc
+" tnoremap <Esc> <C-\><C-n>
+
+noremap H ^
+noremap L $
+
+noremap U <C-r>
+
+noremap <LEADER><LEADER> <Esc>
+
+" Press ` to change case (instead of ~)
+" 快速切换首字母大小写
+" ~的作用就是切换大小写
+noremap ` b~
 
 " ===
 " === Window management
@@ -124,10 +167,10 @@ noremap zk :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap zl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-noremap <LEADER><up> :res +5<CR>
-noremap <LEADER><down> :res -5<CR>
-noremap <LEADER><left> :vertical resize-5<CR>
-noremap <LEADER><right> :vertical resize+5<CR>
+noremap <Leader><Up> :res +5<CR>
+noremap <Leader><Down> :res -5<CR>
+noremap <Leader><Left> :vertical resize+5<CR>
+noremap <Leader><Right> :vertical resize-5<CR>
 
 " Place the two screens up and down
 noremap zh <C-w>t<C-w>K
@@ -138,48 +181,6 @@ noremap zv <C-w>t<C-w>H
 noremap zrh <C-w>b<C-w>K
 noremap zrv <C-w>b<C-w>H
 
-
-" Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<CR>
-noremap S <C-w>j:w<CR>
-
-" markdown snippets
-source ~/.config/nvim/md-snippets.vim
-
-" clipboard
-vnoremap y "+y
-
-" C/C++ ';'  at the end
-autocmd filetype c inoremap ,; <Esc>A;<CR>
-autocmd filetype cpp inoremap ,; <Esc>A;<CR>
-
-" save when you did't use sudo
-cnoremap sw w !sudo tee >/dev/null %
-
-" inner termial esc
-" tnoremap <Esc> <C-\><C-n>
-
-noremap H ^
-noremap L $
-
-noremap U <C-r>
-
-" Adjacent duplicate words
-noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
-
-noremap <LEADER><LEADER> <Esc>  
-
-" Spelling Check with <space>sc
-noremap <LEADER>sc :set spell!<CR>
-
-" Press ` to change case (instead of ~)
-" 快速切换首字母大小写
-" ~的作用就是切换大小写
-noremap ` b~
-
-" Auto change directory to current dir
-autocmd BufEnter * silent! lcd %:p:h
-
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================
@@ -187,3 +188,7 @@ source ~/.config/nvim/plug-list.vim
 colorscheme gruvbox
 set background=dark
 
+" =================================
+" ========== Plug Setup ===========
+" =================================
+source ~/.config/nvim/plug-setting.vim

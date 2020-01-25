@@ -1,46 +1,47 @@
 call plug#begin('~/.config/nvim/plug')
-" theme
+" Theme
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" file tree
-Plug 'scrooloose/nerdtree'
-" code change tree
 
+" File tree
+Plug 'scrooloose/nerdtree'
+
+" Code change tree
 Plug 'mbbill/undotree'
 
-" git plug
+" Git plug
 Plug 'tpope/vim-fugitive'
 
-" auto toggle fcitx
+" Auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" vim tartup screen
+" Vim tartup screen
 Plug 'mhinz/vim-startify'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" leader tips
-Plug 'theniceboy/vim-leader-mapper' 
+" Leader tips
+Plug 'theniceboy/vim-leader-mapper'
 
-" ranger
+" vim-multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
+
+" Ranger
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
 " Bracket completion
 Plug 'tpope/vim-surround'
 
-" multiple cursor
-Plug 'terryma/vim-multiple-cursors'
-
-" autoformat
+" Autoformat
 Plug 'Chiel92/vim-autoformat'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
@@ -60,6 +61,7 @@ Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim'
+Plug 'w0rp/ale'
 
 " Markdown
 " Plug 'godlygeek/tabular', {'for' :['markdown', 'vim-plug'] }
@@ -68,6 +70,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'f
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for' :['markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
 
-" pug
+" Pug
 Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug'] }
 call plug#end()

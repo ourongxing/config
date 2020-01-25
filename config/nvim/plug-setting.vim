@@ -1,5 +1,3 @@
-let g:airline_powerline_fonts = 0
-
 "" ===
 "" === NERDTree
 "" ===
@@ -18,11 +16,11 @@ let NERDTreeMapToggleHidden = "<backspace>"
 " === FZF
 " ===
 " 查找文件
-noremap <C-s> :FZF<CR>
+noremap <C-p> :FZF<CR>
 " 查找文件内容
 noremap <C-f> :Ag<CR>
 " 历史打开的文件
-noremap <C-h> :MRU<CR>
+noremap <C-s> :MRU<CR>
 " 查找tag
 noremap <C-t> :BTags<CR>
 " 跳转打开的文件
@@ -32,8 +30,8 @@ noremap <C-b> :Buffers<CR>
 " 历史命令
 noremap <C-q> :History:<CR>
 
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noruler
+autocmd! Filetype fzf
+autocmd  Filetype fzf set laststatus=0 noruler
 			\| autocmd BufLeave <buffer> set laststatus=2 ruler
 
 command! -bang -nargs=* Buffers
@@ -75,7 +73,7 @@ command! -bang BTags
 " === coc
 " ===
 " fix the most annoying bug that coc has
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+silent! au BufEnter,BufRead,BufNewFile * silent! unmap
 let g:coc_global_extensions = ['coc-pairs', 'coc-tabnine', 'coc-snippets', 'coc-translator', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-stylelint']
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
@@ -155,22 +153,12 @@ let g:leaderMenu = {'name':  "Shortcut Menu",
 			\'SPC g=':  ['Next Hunk'],
 			\'SPC rn':  ['Rename variable'],
 			\'SPC tm':  ['Toggle table-mode'],
-			\'SPC a':  ['Calculate equation'],
 			\'SPC gi':  ['New .gitignore'],
 			\'SPC gy':  ['Toggle focus mode'],
 			\}
 nnoremap <silent> ? :call leaderMapper#start() "<Space>"<CR>
-let g:leaderMapperWidth = 50
+let g:leaderMapperWidth = 40
 
-" ==
-"  o
-" == vim-multiple-cursor
-" ==
-let g:ulti_cursor_use_default_mapping=0
-"let g:multi_cursor_next_key='<C-k>'
-"let g:multi_cursor_prev_key='<C-j>'
-"let g:multi_cursor_skip_key='<C-l>'
-let g:multi_cursor_quit_key='<Esc>'
 
 " ==
 " == markdown preview
@@ -198,13 +186,13 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 " ==
-" == airline
+" == Airline
 " ==
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='bubblegum'
 
 " ==
-" == bullets
+" == Bullets
 " ==
 let g:bullets_enabled_file_types = [
 			\ 'markdown',
@@ -214,7 +202,26 @@ let g:bullets_enabled_file_types = [
 			\]
 
 " ==
-" == autformat
+" == Autformat
 " ==
 noremap <Leader>f :Autoformat<CR>
 let g:autoformat_verbosemode=1
+
+" ==
+" == Multiple-cursors 
+" ==
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-m>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+" ==
+" == ale
+" ==
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
