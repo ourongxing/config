@@ -7,6 +7,10 @@ fi
 # =====
 source "$HOME/.zinit/bin/zinit.zsh"
 
+# powerlevel10k 
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+
 # 快速目录跳转
 zinit ice lucid wait='1'
 zinit light skywind3000/z.lua
@@ -40,10 +44,6 @@ zinit snippet OMZ::plugins/extract
 # git
 zplg ice lucid wait='1'
 zplg snippet OMZ::plugins/git/git.plugin.zsh
-
-# powerlevel10k 
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
 
 # =====
 # ===== Main 
