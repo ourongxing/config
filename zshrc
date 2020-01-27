@@ -1,3 +1,10 @@
+# =====
+# ===== Start
+# =====
+
+# 将光标切换为插入模式
+echo -ne '\e[5 q'
+# 加载p10k-instant-prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -5,6 +12,7 @@ fi
 # =====
 # ===== Zinit
 # =====
+
 source "$HOME/.zinit/bin/zinit.zsh"
 
 # powerlevel10k 
@@ -16,15 +24,15 @@ zinit ice lucid wait='1'
 zinit light skywind3000/z.lua
 
 # 语法高亮
-zinit ice lucid wait='0' atinit='zpcompinit'
+zinit ice lucid wait atinit='zpcompinit'
 zinit light zdharma/fast-syntax-highlighting
 
 # 自动建议
-zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
+zinit ice lucid wait atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
 # 补全
-zinit ice lucid wait='0'
+zinit ice lucid wait blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
 # 加载 OMZ 框架及部分插件
@@ -38,7 +46,7 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 
 # 解压缩
-zinit ice svn 
+zinit ice svn lucid wait='1' 
 zinit snippet OMZ::plugins/extract
 
 # git
@@ -46,8 +54,9 @@ zinit ice lucid wait='1'
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # =====
-# ===== Main 
+# ===== Export 
 # =====
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize  # commented out by conda initialize
 export PATH="/home/orongxing/miniconda3/envs/python36/bin:$PATH"  # commented out by conda initialize
@@ -61,6 +70,7 @@ export EDITOR=nvim
 # =====
 # ===== Alias
 # =====
+
 alias note='vim ~/.note.md'
 alias aria='aria2c'
 alias ls="exa"
@@ -86,8 +96,8 @@ alias tr='trash-restore'       # restore a trashed file.
 # =====
 # ===== User configuration
 # =====
-#
-# vi-mode
+
+# Vi-Mode
 function zle-keymap-select {
 	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
 		echo -ne '\e[1 q'
@@ -96,9 +106,6 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-  # Use beam shape cursor on startup.
-echo -ne '\e[5 q'
-  # Use beam shape cursor for each new prompt.
 preexec() {
 	echo -ne '\e[5 q'
 }
@@ -109,22 +116,14 @@ precmd_functions+=(_fix_cursor)
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# fzf
+# FZF
 export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_COMPLETION_TRIGGER='\'
 export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# nvm
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-export PATH=$HOME/.nvm/versions/node/v13.5.0/bin/:$PATH
-
-# jump to previous folder
+# Jump to previous folder
 cdlast() {
   cd -
   #ls -lrth --color=auto | tail
@@ -133,14 +132,10 @@ cdlast() {
 zle -N cdlast
 bindkey '^Z' cdlast
 
-# thefuck
+# Thefuck
 eval $(thefuck --alias)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+# Conda 
 __conda_setup="$('/home/orongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -153,3 +148,13 @@ else
 fi
 unset __conda_setup
 
+# NVM
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
+export PATH=$HOME/.nvm/versions/node/v13.5.0/bin/:$PATH
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
