@@ -35,6 +35,7 @@ zplg ice svn
 zplg snippet OMZ::plugins/extract
 
 zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zplugin ice svn
 zplugin ice depth=1; zplugin light romkatv/powerlevel10k
 
@@ -54,6 +55,7 @@ export EDITOR=nvim
 # =====
 # ===== Alias
 # =====
+alias aria='aria2c'
 alias ls="exa"
 alias open='xdg-open'
 alias vim='nvim'
