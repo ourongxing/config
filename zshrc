@@ -3,41 +3,47 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # =====
-# ===== Zplugin
+# ===== Zinit
 # =====
 source "$HOME/.zinit/bin/zinit.zsh"
 
 # 快速目录跳转
-zplg ice lucid wait='1'
-zplg light skywind3000/z.lua
+zinit ice lucid wait='1'
+zinit light skywind3000/z.lua
 
 # 语法高亮
-zplg ice lucid wait='0' atinit='zpcompinit'
-zplg light zdharma/fast-syntax-highlighting
+zinit ice lucid wait='0' atinit='zpcompinit'
+zinit light zdharma/fast-syntax-highlighting
 
 # 自动建议
-zplg ice lucid wait="0" atload='_zsh_autosuggest_start'
-zplg light zsh-users/zsh-autosuggestions
+zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
 
 # 补全
-zplg ice lucid wait='0'
-zplg light zsh-users/zsh-completions
+zinit ice lucid wait='0'
+zinit light zsh-users/zsh-completions
 
 # 加载 OMZ 框架及部分插件
-zplg snippet OMZ::lib/completion.zsh
-zplg snippet OMZ::lib/history.zsh
-zplg snippet OMZ::lib/key-bindings.zsh
-zplg snippet OMZ::lib/theme-and-appearance.zsh
-zplg snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZ::lib/key-bindings.zsh
+zinit snippet OMZ::lib/theme-and-appearance.zsh
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+# vi-mode
+zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 
 # 解压缩
-zplg ice svn 
-zplg snippet OMZ::plugins/extract
+zinit ice svn 
+zinit snippet OMZ::plugins/extract
 
-zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
-zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zplugin ice svn
-zplugin ice depth=1; zplugin light romkatv/powerlevel10k
+# git
+zplg ice lucid wait='1'
+zplg snippet OMZ::plugins/git/git.plugin.zsh
+
+# powerlevel10k 
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 
 # =====
 # ===== Main 
@@ -55,6 +61,7 @@ export EDITOR=nvim
 # =====
 # ===== Alias
 # =====
+alias note='vim ~/.note.md'
 alias aria='aria2c'
 alias ls="exa"
 alias open='xdg-open'
