@@ -1,6 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -8,7 +5,6 @@ fi
 # =====
 # ===== Zplugin
 # =====
-# plugins=(extract zsh-autosuggestions autojump zsh-syntax-highlighting vi-mode)
 source "$HOME/.zinit/bin/zinit.zsh"
 
 # 快速目录跳转
@@ -34,44 +30,19 @@ zplg snippet OMZ::lib/key-bindings.zsh
 zplg snippet OMZ::lib/theme-and-appearance.zsh
 zplg snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-zplg ice svn
+# 解压缩
+zplg ice svn 
 zplg snippet OMZ::plugins/extract
 
 zplugin snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 zplugin ice svn
 zplugin ice depth=1; zplugin light romkatv/powerlevel10k
 
-# vi-mode
-function zle-keymap-select {
-	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-		echo -ne '\e[1 q'
-	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
-		echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-  # Use beam shape cursor on startup.
-echo -ne '\e[5 q'
-  # Use beam shape cursor for each new prompt.
-preexec() {
-	echo -ne '\e[5 q'
-}
-_fix_cursor() {
-	echo -ne '\e[5 q'
-}
-precmd_functions+=(_fix_cursor)
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-# atuosuggestion
-# bindkey ';' autosuggest-accept
-
-
 # =====
 # ===== Main 
 # =====
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize
+# export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize  # commented out by conda initialize
 export PATH="/home/orongxing/miniconda3/envs/python36/bin:$PATH"  # commented out by conda initialize
 export PATH="/home/orongxing/miniconda3/envs/python27/bin:$PATH"  # commented out by conda initialize
 export GOPATH=$HOME/go
@@ -83,6 +54,7 @@ export EDITOR=nvim
 # =====
 # ===== Alias
 # =====
+alias ls="exa"
 alias open='xdg-open'
 alias vim='nvim'
 alias ra='ranger'
@@ -105,6 +77,29 @@ alias tr='trash-restore'       # restore a trashed file.
 # =====
 # ===== User configuration
 # =====
+#
+# vi-mode
+function zle-keymap-select {
+	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+		echo -ne '\e[1 q'
+	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+		echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+  # Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+  # Use beam shape cursor for each new prompt.
+preexec() {
+	echo -ne '\e[5 q'
+}
+_fix_cursor() {
+	echo -ne '\e[5 q'
+}
+precmd_functions+=(_fix_cursor)
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 # fzf
 export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -134,3 +129,18 @@ eval $(thefuck --alias)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/orongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/orongxing/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/orongxing/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/orongxing/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
