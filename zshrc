@@ -42,8 +42,8 @@ zinit ice svn
 zinit snippet OMZ::plugins/extract
 
 # git
-zplg ice lucid wait='1'
-zplg snippet OMZ::plugins/git/git.plugin.zsh
+zinit ice lucid wait='1' 
+zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # =====
 # ===== Main 
