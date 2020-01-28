@@ -48,6 +48,7 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set go=
+set hidden
 set helplang=cn
 set list
 set listchars=tab:\|\ ,trail:▫
@@ -79,6 +80,12 @@ set visualbell
 set updatetime=1000
 let g:deoplete#enable_at_startup = 1
 
+" 关闭文件还能显示修改记录
+set undofile
+set undodir=$HOME/.vimcache/undo
+set undolevels=1000
+set undoreload=10000
+
 " when python
 let python_highlight_all=1
 autocmd Filetype python set tabstop=4
@@ -105,13 +112,13 @@ let mapleader=" "
 noremap ; :
 
 " Open Startify
-noremap <LEADER>st :Startify<CR>
+noremap <silent> <LEADER>st :Startify<CR>
 
 " Open the vimrc file anytime
-noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+noremap <silent> <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open up lazygit
-noremap <c-g> :term lazygit<CR>
+noremap <silent> <c-g> :term lazygit<CR>
 
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
@@ -120,6 +127,14 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+" 切换缓冲区
+noremap <silent> <C-j> :bp<CR>
+noremap <silent> <C-k> :bn<CR>
+noremap <silent> <C-Left> :bp<CR>
+noremap <silent> <C-Right> :bn<CR>
+noremap <silent> <Leader>x :bd<CR>
+noremap <silent> <Leader>1 :1b<CR>
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>

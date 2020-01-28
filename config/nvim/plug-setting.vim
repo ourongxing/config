@@ -5,7 +5,7 @@ noremap tt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl = ""
 "let NERDTreeMapUpdir = "N"
 let NERDTreeMapUpdirKeepOpen = "h"
-"let NERDTreeMapOpenSplit = ""
+let NERDTreeMapOpenSplit = "a"
 let NERDTreeMapOpenVSplit = "L"
 let NERDTreeMapActivateNode = "l"
 let NERDTreeMapChangeRoot = "l"
@@ -74,7 +74,7 @@ command! -bang BTags
 " ===
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap
-let g:coc_global_extensions = ['coc-pairs', 'coc-tabnine', 'coc-snippets', 'coc-translator', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-stylelint']
+let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-translator', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-stylelint']
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -134,31 +134,6 @@ endfunc
 nnoremap R :Ranger<CR>
 let g:ranger_map_keys = 0
 
-" ===
-" === vim-map-leader
-" ===
-let g:leaderMenu = {'name':  "Shortcut Menu",
-			\'SPC f':  ['Advanced find'],
-			\'SPC rc': ['Edit nvim config'],
-			\'SPC Enter':  ['Clear search'],
-			\'SPC dw':  ['Remove adj. dup. words'],
-			\'SPC tt':  ['spc to tabs'],
-			\'SPC o':  ['Open folds'],
-			\'SPC q':  ['Close win below'],
-			\'SPC /':  ['Open terminal'],
-			\'SPC <SPC>':  ['Find <++>'],
-			\'SPC sc':  ['Toggle spell-check'],
-			\'SPC gf':  ['Fold unchanged'],
-			\'SPC g-':  ['Previous hunk'],
-			\'SPC g=':  ['Next Hunk'],
-			\'SPC rn':  ['Rename variable'],
-			\'SPC tm':  ['Toggle table-mode'],
-			\'SPC gi':  ['New .gitignore'],
-			\'SPC gy':  ['Toggle focus mode'],
-			\}
-nnoremap <silent> ? :call leaderMapper#start() "<Space>"<CR>
-let g:leaderMapperWidth = 40
-
 
 " ==
 " == markdown preview
@@ -188,8 +163,9 @@ let g:mkdp_page_title = '「${name}」'
 " ==
 " == Airline
 " ==
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1
 
 " ==
 " == Bullets
@@ -202,13 +178,7 @@ let g:bullets_enabled_file_types = [
 			\]
 
 " ==
-" == Autformat
-" ==
-noremap <Leader>f :Autoformat<CR>
-let g:autoformat_verbosemode=1
-
-" ==
-" == Multiple-cursors 
+" == Multiple-cursors
 " ==
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-n>'
@@ -219,9 +189,29 @@ let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
 " ==
-" == ale
+" == Rainbow
 " ==
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\	'operators': '_,_',
+\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\	'separately': {
+\		'*': {},
+\		'tex': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\		},
+\		'lisp': {
+\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\		},
+\		'vim': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\		},
+\		'html': {
+\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'css': 0,
+\	}
+\}
+

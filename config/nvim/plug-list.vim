@@ -2,7 +2,6 @@ call plug#begin('~/.config/nvim/plug')
 " Theme
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -28,9 +27,6 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Leader tips
-Plug 'theniceboy/vim-leader-mapper'
-
 " vim-multiple-cursors
 Plug 'terryma/vim-multiple-cursors'
 
@@ -41,12 +37,13 @@ Plug 'rbgrouleff/bclose.vim'
 " Bracket completion
 Plug 'tpope/vim-surround'
 
-" Autoformat
-Plug 'Chiel92/vim-autoformat'
+" Rainbow bracket
+Plug 'luochen1990/rainbow'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
-Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'elzr/vim-json' 
+Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css','less'] }
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
@@ -61,15 +58,19 @@ Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim'
-Plug 'w0rp/ale'
 
 " Markdown
-" Plug 'godlygeek/tabular', {'for' :['markdown', 'vim-plug'] }
-" Plug 'plasticboy/vim-markdown', {'for' :['markdown', 'vim-plug'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for' :['markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
 
 " Pug
 Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug'] }
+
+" Yaml
+Plug 'stephpy/vim-yaml'
+
+" colorize all rgb text
+Plug 'lilydjwg/colorizer'
+
 call plug#end()
