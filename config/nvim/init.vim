@@ -80,12 +80,6 @@ set visualbell
 set updatetime=1000
 let g:deoplete#enable_at_startup = 1
 
-" 关闭文件还能显示修改记录
-set undofile
-set undodir=$HOME/.vimcache/undo
-set undolevels=1000
-set undoreload=10000
-
 " when python
 let python_highlight_all=1
 autocmd Filetype python set tabstop=4
@@ -147,10 +141,7 @@ vnoremap y "+y
 autocmd filetype c inoremap ,; <Esc>A;<CR>
 autocmd filetype cpp inoremap ,; <Esc>A;<CR>
 
-" Save when you did't use sudo
-cnoremap sw w !sudo tee >/dev/null %
-
-" inner termial esc
+" inner termidsdl esc
 " tnoremap <Esc> <C-\><C-n>
 
 noremap H ^

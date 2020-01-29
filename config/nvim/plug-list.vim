@@ -40,6 +40,9 @@ Plug 'tpope/vim-surround'
 " Rainbow bracket
 Plug 'luochen1990/rainbow'
 
+" Last edit
+Plug 'farmergreg/vim-lastplace'
+
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json' 
 Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus'] }

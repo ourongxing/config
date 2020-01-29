@@ -127,6 +127,10 @@ function g:Undotree_CustomMap()
 	nmap <buffer> K 5<plug>UndotreeNextState
 	nmap <buffer> J 5<plug>UndotreePreviousState
 endfunc
+if has("persistent_undo")
+    set undodir=$HOME/.cache/vim/undo
+    set undofile
+endif
 
 " ===
 " === Ranger.vim
