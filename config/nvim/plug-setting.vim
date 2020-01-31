@@ -32,42 +32,42 @@ noremap <C-q> :History:<CR>
 
 autocmd! Filetype fzf
 autocmd  Filetype fzf set laststatus=0 noruler
-			\| autocmd BufLeave <buffer> set laststatus=2 ruler
+            \| autocmd BufLeave <buffer> set laststatus=2 ruler
 
 command! -bang -nargs=* Buffers
-			\ call fzf#vim#buffers(
-			\   '',
-			\   <bang>0 ? fzf#vim#with_preview('up:60%')
-			\           : fzf#vim#with_preview('right:0%', '?'),
-			\   <bang>0)
+            \ call fzf#vim#buffers(
+            \       '',
+            \       <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                       : fzf#vim#with_preview('right:0%', '?'),
+            \       <bang>0)
 
 
 command! -bang -nargs=* LinesWithPreview
-			\ call fzf#vim#grep(
-			\   'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
-			\   fzf#vim#with_preview({}, 'up:50%', '?'),
-			\   1)
+            \ call fzf#vim#grep(
+            \       'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
+            \       fzf#vim#with_preview({}, 'up:50%', '?'),
+            \       1)
 
 command! -bang -nargs=* Ag
-			\ call fzf#vim#ag(
-			\   '',
-			\   <bang>0 ? fzf#vim#with_preview('up:60%')
-			\           : fzf#vim#with_preview('right:50%', '?'),
-			\   <bang>0)
+            \ call fzf#vim#ag(
+            \       '',
+            \       <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                       : fzf#vim#with_preview('right:50%', '?'),
+            \       <bang>0)
 
 command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
 
 command! -bang BTags
-			\ call fzf#vim#buffer_tags('', {
-			\     'down': '40%',
-			\     'options': '--with-nth 1
-			\                 --reverse
-			\                 --prompt "> "
-			\                 --preview-window="70%"
-			\                 --preview "
-			\                     tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
-			\                     head -n 16"'
-			\ })
+            \ call fzf#vim#buffer_tags('', {
+            \           'down': '40%',
+            \           'options': '--with-nth 1
+            \                                   --reverse
+            \                                   --prompt "> "
+            \                                   --preview-window="70%"
+            \                                   --preview "
+            \                                           tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
+            \                                           head -n 16"'
+            \ })
 
 " ===
 " === coc
@@ -78,21 +78,21 @@ let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-translator', 'c
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]    =~ '\s'
 endfunction
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 let g:LanguageClient_serverCommands = {
-			\ 'sh': ['bash-language-server', 'start']
-			\ }
+            \ 'sh': ['bash-language-server', 'start']
+            \ }
 
 inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]    =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
 
@@ -122,10 +122,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-	nmap <buffer> k <plug>UndotreeNextState
-	nmap <buffer> j <plug>UndotreePreviousState
-	nmap <buffer> K 5<plug>UndotreeNextState
-	nmap <buffer> J 5<plug>UndotreePreviousState
+    nmap <buffer> k <plug>UndotreeNextState
+    nmap <buffer> j <plug>UndotreePreviousState
+    nmap <buffer> K 5<plug>UndotreeNextState
+    nmap <buffer> J 5<plug>UndotreePreviousState
 endfunc
 if has("persistent_undo")
     set undodir=$HOME/.cache/vim/undo
@@ -151,14 +151,14 @@ let g:mkdp_open_ip = ''
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-			\ 'mkit': {},
-			\ 'katex': {},
-			\ 'uml': {},
-			\ 'maid': {},
-			\ 'disable_sync_scroll': 0,
-			\ 'sync_scroll_type': 'middle',
-			\ 'hide_yaml_meta': 1
-			\ }
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1
+            \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -175,11 +175,11 @@ let g:airline_powerline_fonts = 1
 " == Bullets
 " ==
 let g:bullets_enabled_file_types = [
-			\ 'markdown',
-			\ 'text',
-			\ 'gitcommit',
-			\ 'scratch'
-			\]
+            \ 'markdown',
+            \ 'text',
+            \ 'gitcommit',
+            \ 'scratch'
+            \]
 
 " ==
 " == Multiple-cursors
@@ -197,25 +197,51 @@ let g:multi_cursor_quit_key            = '<Esc>'
 " ==
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
-\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\	'separately': {
-\		'*': {},
-\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-\		'lisp': {
-\		},
-\		'vim': {
-\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-\		},
-\		'html': {
-\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-\		},
-\		'css': 0,
-\	}
-\}
-			\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-			\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-			\		'*': {},
-			\		'html': {
-" ==
+            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'tex': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \       },
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \       },
+            \       'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
+            \}
 
+" ==
+" == Auto format
+" ==
+noremap <silent> <leader>\ :Autoformat<CR>
+
+" ==
+" == cpp
+" ==
+let g:cpp_no_function_highlight = 0 
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let c_no_curly_error = 1
+
+" ==
+" == EasyMotion
+" ==
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)

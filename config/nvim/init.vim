@@ -42,11 +42,12 @@ set autochdir
 set number
 set relativenumber
 set cursorline
-set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 set autoindent
+set autoread
 set go=
 set hidden
 set helplang=cn
@@ -149,7 +150,7 @@ noremap L $
 
 noremap U <C-r>
 
-noremap <LEADER><LEADER> <Esc>
+" noremap <LEADER><LEADER> <Esc>
 
 " Press ` to change case (instead of ~)
 " 快速切换首字母大小写
@@ -160,11 +161,11 @@ noremap ` b~
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
-noremap <LEADER>k <C-w>k
-noremap <LEADER>j <C-w>j
-noremap <LEADER>h <C-w>h
-noremap <LEADER>l <C-w>l
+noremap zw <C-w>w
+" noremap zgk <C-w>k
+" noremap zgj <C-w>j
+" noremap zgh <C-w>h
+" noremap zgl <C-w>l
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap zh :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
@@ -173,10 +174,10 @@ noremap zk :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap zl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-noremap <Leader><Up> :res +5<CR>
-noremap <Leader><Down> :res -5<CR>
-noremap <Leader><Left> :vertical resize+5<CR>
-noremap <Leader><Right> :vertical resize-5<CR>
+noremap zzk :res +5<CR>
+noremap zzj :res -5<CR>
+noremap zzh :vertical resize+5<CR>
+noremap zzl :vertical resize-5<CR>
 
 " Place the two screens up and down
 noremap zh <C-w>t<C-w>K
@@ -187,6 +188,8 @@ noremap zv <C-w>t<C-w>H
 noremap zrh <C-w>b<C-w>K
 noremap zrv <C-w>b<C-w>H
 
+" 将两个空格转化为四个空格
+noremap <silent> <leader>zz :set ts=2<CR>:set noexpandtab<CR>:%retab!<CR>:set ts=4<CR>:set expandtab<CR>:%retab!<CR>
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================
