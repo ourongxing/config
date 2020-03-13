@@ -8,14 +8,12 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Tpope is so powerful
 " ====================== 
-" Git plug
 Plug 'tpope/vim-fugitive'
-" Bracket completion
 Plug 'tpope/vim-surround'
-" Repeat surround
 Plug 'tpope/vim-repeat'
-" Comment
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-abolish'
 " =======================
 
 " File tree
@@ -61,6 +59,9 @@ Plug 'Lokaltog/vim-easymotion'
 
 " Cpp
 Plug 'octol/vim-cpp-enhanced-highlight' 
+
+" 
+Plug 'honza/vim-snippets'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'

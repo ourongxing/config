@@ -1,16 +1,17 @@
-"  ___  _   _ _ __ ___  _ __   __ ___  _(_)_ __   __ _
+" ___  _         _ _ __ ___  _ __               __ ___  _(_)_ __         __ _
 " / _ \| | | | '__/ _ \| '_ \ / _` \ \/ / | '_ \ / _` |
-"| (_) | |_| | | | (_) | | | | (_| |>  <| | | | | (_| |
-" \___/ \__,_|_|  \___/|_| |_|\__, /_/\_\_|_| |_|\__, |
-"                             |___/              |___/
+" | (_) | |_| | | | (_) | | | | (_| |>  <| | | | | (_| |
+" \___/ \__,_|_|        \___/|_| |_|\__, /_/\_\_|_| |_|\__, |
+"                                                                                                                        |___/                                                  |___/
+"
 " Author: @ourongxing & @theniceboy
 " ===
 " === Auto load for first time uses
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+                silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+                                                                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " ===
@@ -18,9 +19,9 @@ endif
 " ===
 let has_machine_specific_file = 1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file = 0
-	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-	silent! :e ~/.config/nvim/_machine_specific.vim 
+                let has_machine_specific_file = 0
+                silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+                silent! :e ~/.config/nvim/_machine_specific.vim
 endif
 source ~/.config/nvim/_machine_specific.vim
 
@@ -61,7 +62,7 @@ set wrap "自动换行
 " set linebreak "整字换行
 set tw=0
 set indentexpr=
-set foldmethod=indent
+set foldmethod=manual
 set foldlevel=99
 set foldenable
 set formatoptions-=tc
@@ -104,7 +105,6 @@ source ~/.config/nvim/md-snippets.vim
 
 " Set <LEADER> as <SPACE>
 let mapleader=" "
-noremap ; :
 
 " Open Startify
 noremap <silent> <LEADER>st :Startify<CR>
@@ -122,6 +122,10 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+" 保存和加载折叠
+noremap <silent> <Leader>zm :mkview<CR>
+noremap <silent> <Leader>zl :loadview<CR>
 
 " 切换缓冲区
 noremap <silent> <C-j> :bp<CR>
@@ -189,7 +193,14 @@ noremap zrh <C-w>b<C-w>K
 noremap zrv <C-w>b<C-w>H
 
 " 将两个空格转化为四个空格
-noremap <silent> <leader>zz :set ts=2<CR>:set noexpandtab<CR>:%retab!<CR>:set ts=4<CR>:set expandtab<CR>:%retab!<CR>
+" noremap <silent> <leader>zz :set ts=2<CR>:set noexpandtab<CR>:%retab!<CR>:set ts=4<CR>:set expandtab<CR>:%retab!<CR>
+
+" figlet
+noremap tx :r !figlet
+noremap mm bi <Esc>ea <Esc>
+autocmd Filetype json inoremap <buffer> <silent> ,k %keyword%
+autocmd Filetype json noremap <buffer> <silent> ,d T"dt"i
+
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================
