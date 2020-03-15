@@ -16,17 +16,15 @@ let NERDTreeMapToggleHidden = "<backspace>"
 " === FZF
 " ===
 " 查找文件
-noremap <C-p> :FZF<CR>
+noremap <C-s> :FZF<CR>
 " 查找文件内容
 noremap <C-f> :Ag<CR>
 " 历史打开的文件
-noremap <C-s> :MRU<CR>
-" 查找tag
-noremap <C-t> :BTags<CR>
-" 跳转打开的文件
+noremap <C-m> :MRU<CR>
+" 缓冲区
 noremap <C-b> :Buffers<CR>
-" 预览每一行
-" noremap <C-> :LinesWithPreview<CR>
+" 命令
+noremap <C-p> :Commands<CR>
 " 历史命令
 noremap <C-q> :History:<CR>
 
@@ -59,14 +57,14 @@ command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
 
 command! -bang BTags
             \ call fzf#vim#buffer_tags('', {
-            \           'down': '40%',
-            \           'options': '--with-nth 1
-            \                                   --reverse
-            \                                   --prompt "> "
-            \                                   --preview-window="70%"
-            \                                   --preview "
-            \                                           tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
-            \                                           head -n 16"'
+            \       'down': '40%',
+            \       'options': '--with-nth 1
+            \                   --reverse
+            \                   --prompt "> "
+            \                   --preview-window="70%"
+            \                   --preview "
+            \                           tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
+            \                           head -n 16"'
             \ })
 
 " ===
@@ -74,7 +72,7 @@ command! -bang BTags
 " ===
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap
-let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-translator', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-stylelint']
+let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-translator', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-stylelint', 'coc-tabnine', 'coc-html', 'coc-gitignore']
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -98,18 +96,41 @@ let g:coc_snippet_next = '<tab>'
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
-" Useful commands
+
+"解决coc.nvim大文件卡死状况
+let g:trigger_size = 0.5 * 1048576
+augroup hugefile
+  autocmd!
+  autocmd BufReadPre *
+        \ let size = getfsize(expand('<afile>')) |
+        \ if (size > g:trigger_size) || (size == -2) |
+        \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+        \   exec 'CocDisable' |
+        \ else |
+        \   exec 'CocEnable' |
+        \ endif |
+        \ unlet size
+augroup END
+
+" 延迟启动
+let g:coc_start_at_startup=0
+function! CocTimerStart(timer)
+    exec "CocStart"
+endfunction
+call timer_start(500,'CocTimerStart',{'repeat':1})
+
+" Useful Commands
 " 剪贴板
-nnoremap <silent> <leader>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gp :<C-u>CocList --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 " 查看定义
 nmap <silent> gr <Plug>(coc-references)
 " 用于修改变量名字，超级好用
-nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> gn <Plug>(coc-rename)
 " 翻译
-nmap <Leader>t <Plug>(coc-translator-p)
+nmap <silent> gf <Plug>(coc-translator-p)
 
 " ===
 " === Undotree
@@ -135,7 +156,7 @@ endif
 " ===
 " === Ranger.vim
 " ===
-nnoremap R :Ranger<CR>
+noremap W :Ranger<CR>
 let g:ranger_map_keys = 0
 
 
@@ -165,11 +186,56 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 " ==
-" == Airline
+" == Lightline
 " ==
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='bubblegum'
-let g:airline_powerline_fonts = 1
+set laststatus=2
+set showtabline=2
+let g:lightline = {
+            \ 'colorscheme': 'darcula',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'gitbranch', 'readonly', 'filename' ] ]
+            \ },
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'readonly': 'LightlineReadonly',
+            \   'gitbranch': 'FugitiveHead'
+            \ },
+            \ 'tabline': {
+            \   'left': [['buffers']], 'right': []
+            \ },
+            \ 'component_expand': {
+            \   'buffers': 'lightline#bufferline#buffers'
+            \ },
+            \ 'component_type': {
+            \   'buffers': 'tabsel'
+            \ }
+            \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+function! LightlineReadonly()
+  return &readonly && &filetype !=# 'help' ? 'RO' : ''
+endfunction
+
+" 低于两个buffer时不显示
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#show_number  = 2
+let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline#bufferline#filename_modifier = ':t'
+
+" ==
+" == Bufferline
+" ==
+" let g:bufferline_show_bufnr = 0
+
 
 " ==
 " == Bullets
@@ -220,14 +286,9 @@ let g:rainbow_conf = {
             \}
 
 " ==
-" == Auto format
-" ==
-noremap <silent> <leader>\ :Autoformat<CR>
-
-" ==
 " == cpp
 " ==
-let g:cpp_no_function_highlight = 0 
+let g:cpp_no_function_highlight = 0
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
@@ -239,12 +300,12 @@ let c_no_curly_error = 1
 " ==
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-map <Leader><leader>h <Plug>(easymotion-linebackward)
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
-map <Leader><leader>l <Plug>(easymotion-lineforward)
+nmap <Leader><leader>h <Plug>(easymotion-linebackward)
+nmap <Leader><Leader>j <Plug>(easymotion-j)
+nmap <Leader><Leader>k <Plug>(easymotion-k)
+nmap <Leader><leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
-map <Leader><leader>. <Plug>(easymotion-repeat)
+nmap <Leader><leader>. <Plug>(easymotion-repeat)
 
 " ==
 " == Comment

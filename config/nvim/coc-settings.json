@@ -1,4 +1,6 @@
 {
+    "coc.source.around.enable": false,
+    "coc.source.buffer.enable": false,
     "yank.enableCompletion" : false,
     "diagnostic.virtualText": true,
     "codeLens.enable": true,

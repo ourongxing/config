@@ -1,17 +1,18 @@
-" ___  _         _ _ __ ___  _ __               __ ___  _(_)_ __         __ _
+"                                        _
+"  ___  _   _ _ __ ___  _ __   __ ___  _(_)_ __   __ _
 " / _ \| | | | '__/ _ \| '_ \ / _` \ \/ / | '_ \ / _` |
-" | (_) | |_| | | | (_) | | | | (_| |>  <| | | | | (_| |
-" \___/ \__,_|_|        \___/|_| |_|\__, /_/\_\_|_| |_|\__, |
-"                                                                                                                        |___/                                                  |___/
+"| (_) | |_| | | | (_) | | | | (_| |>  <| | | | | (_| |
+" \___/ \__,_|_|  \___/|_| |_|\__, /_/\_\_|_| |_|\__, |
+"                             |___/              |___/
 "
 " Author: @ourongxing & @theniceboy
 " ===
 " === Auto load for first time uses
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-                silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-                                                                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " ===
@@ -19,9 +20,9 @@ endif
 " ===
 let has_machine_specific_file = 1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
-                let has_machine_specific_file = 0
-                silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-                silent! :e ~/.config/nvim/_machine_specific.vim
+    let has_machine_specific_file = 0
+    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+    silent! :e ~/.config/nvim/_machine_specific.vim
 endif
 source ~/.config/nvim/_machine_specific.vim
 
@@ -44,6 +45,7 @@ set number
 set relativenumber
 set cursorline
 set tabstop=4
+set noshowmode
 set shiftwidth=4
 set softtabstop=4
 set expandtab
@@ -68,7 +70,6 @@ set foldenable
 set formatoptions-=tc
 set splitright
 set splitbelow
-set noshowmode
 set showcmd
 set wildmenu
 set ignorecase
@@ -97,11 +98,12 @@ autocmd Filetype python set foldlevel=99
 " =================================
 " ======== Basic Mappings =========
 " =================================
-" Compile function
-source ~/.config/nvim/code-compile.vim
+"
+" some functions
+source ~/.config/nvim/custom-utils.vim
 
-" Markdown snippets
-source ~/.config/nvim/md-snippets.vim
+" snippets
+source ~/.config/nvim/custom-snippets.vim
 
 " Set <LEADER> as <SPACE>
 let mapleader=" "
@@ -124,16 +126,23 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 " 保存和加载折叠
-noremap <silent> <Leader>zm :mkview<CR>
-noremap <silent> <Leader>zl :loadview<CR>
+noremap <silent> zs :mkview<CR>
+noremap <silent> zl :loadview<CR>
 
 " 切换缓冲区
 noremap <silent> <C-j> :bp<CR>
 noremap <silent> <C-k> :bn<CR>
-noremap <silent> <C-Left> :bp<CR>
-noremap <silent> <C-Right> :bn<CR>
-noremap <silent> <Leader>x :bd<CR>
-noremap <silent> <Leader>1 :1b<CR>
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
@@ -141,10 +150,6 @@ noremap S <C-w>j:w<CR>
 
 " Clipboard
 vnoremap y "+y
-
-" C/C++ ';'  at the end
-autocmd filetype c inoremap ,; <Esc>A;<CR>
-autocmd filetype cpp inoremap ,; <Esc>A;<CR>
 
 " inner termidsdl esc
 " tnoremap <Esc> <C-\><C-n>
@@ -165,50 +170,49 @@ noremap ` b~
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap zw <C-w>w
-" noremap zgk <C-w>k
-" noremap zgj <C-w>j
-" noremap zgh <C-w>h
-" noremap zgl <C-w>l
+noremap cw  <C-w>w
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap zh :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap zj :set splitbelow<CR>:split<CR>
-noremap zk :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap zl :set splitright<CR>:vsplit<CR>
+noremap ck :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap cl :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 
 " Resize splits with arrow keys
-noremap zzk :res +5<CR>
-noremap zzj :res -5<CR>
-noremap zzh :vertical resize+5<CR>
-noremap zzl :vertical resize-5<CR>
+noremap cdj :res +5<CR>
+noremap cdk :res -5<CR>
+noremap cdl :vertical resize+5<CR>
+noremap cdh :vertical resize-5<CR>
 
 " Place the two screens up and down
-noremap zh <C-w>t<C-w>K
-" Place the two screens side by side
-noremap zv <C-w>t<C-w>H
+noremap ch <C-w>t<C-w>K
+noremap cv <C-w>t<C-w>H
 
 " Rotate screens
-noremap zrh <C-w>b<C-w>K
-noremap zrv <C-w>b<C-w>H
+noremap crh <C-w>b<C-w>K
+noremap crv <C-w>b<C-w>H
 
 " 将两个空格转化为四个空格
-" noremap <silent> <leader>zz :set ts=2<CR>:set noexpandtab<CR>:%retab!<CR>:set ts=4<CR>:set expandtab<CR>:%retab!<CR>
+" noremap <silent> mm :set ts=2<CR>:set noexpandtab<CR>:%retab!<CR>:set ts=4<CR>:set expandtab<CR>:%retab!<CR>
 
 " figlet
 noremap tx :r !figlet
-noremap mm bi <Esc>ea <Esc>
-autocmd Filetype json inoremap <buffer> <silent> ,k %keyword%
-autocmd Filetype json noremap <buffer> <silent> ,d T"dt"i
+
+noremap ;; :call CompileRunGcc()<CR>
+noremap <silent> <leader>\ :Autoformat<CR>
+autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
 
 " =================================
 " = Install Plugins with Vim-Plug =
 " =================================
 source ~/.config/nvim/plug-list.vim
-colorscheme gruvbox
+colorscheme seoul256
+" colorscheme gruvbox
+let g:seoul256_background = 234
+colo seoul256
 set background=dark
 
 " =================================
 " ========== Plug Setup ===========
 " =================================
 source ~/.config/nvim/plug-setting.vim
+
+

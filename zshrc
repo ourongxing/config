@@ -65,6 +65,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
 export RANGER_LOAD_DEFAULT_RC="false"
 export EDITOR=nvim
+export DOWNGRADE_FROM_ALA=1
 
 
 # =====
@@ -72,7 +73,7 @@ export EDITOR=nvim
 # =====
 
 alias note='vim ~/.note.md'
-alias aria='aria2c'
+alias aria='aria2c -D --conf-path=/home/orongxing/.aria2.conf'
 alias ls="exa"
 alias open='xdg-open'
 alias vim='nvim'
@@ -131,6 +132,10 @@ cdlast() {
 }
 zle -N cdlast
 bindkey '^Z' cdlast
+
+zsh_stats () {
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
+}
 
 # Thefuck
 eval $(thefuck --alias)

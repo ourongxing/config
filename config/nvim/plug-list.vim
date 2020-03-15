@@ -3,8 +3,11 @@ call plug#begin('~/.config/nvim/plug')
 " Theme
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/seoul256.vim'
+Plug 'itchyny/lightline.vim'
+" Plug 'mkitt/tabline.vim'
+" Plug 'bling/vim-bufferline'
+Plug 'mengelbrecht/lightline-bufferline'
 
 " Tpope is so powerful
 " ====================== 
@@ -13,7 +16,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-abolish'
 " =======================
 
 " File tree
@@ -24,6 +26,8 @@ Plug 'mbbill/undotree'
 
 " Auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
+
+" Plug 'airblade/vim-gitgutter'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

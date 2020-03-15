@@ -1,7 +1,6 @@
 from ranger.api.commands import Command
 import os
 from ranger.core.loader import CommandLoader
-
 class paste_as_root(Command):
 	def execute(self):
 		if self.fm.do_cut:
@@ -136,3 +135,4 @@ class extracthere(Command):
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
+
