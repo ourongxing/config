@@ -18,9 +18,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-speeddating'
 " =======================
 
-" File tree
-Plug 'scrooloose/nerdtree'
-
 " Code change tree
 Plug 'mbbill/undotree'
 

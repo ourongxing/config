@@ -132,6 +132,7 @@ noremap <silent> zl :loadview<CR>
 " 切换缓冲区
 noremap <silent> <C-j> :bp<CR>
 noremap <silent> <C-k> :bn<CR>
+noremap <silent> <Leader>x :bd<CR>
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -214,5 +215,3 @@ set background=dark
 " ========== Plug Setup ===========
 " =================================
 source ~/.config/nvim/plug-setting.vim
-
-

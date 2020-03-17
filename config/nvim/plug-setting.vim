@@ -1,16 +1,16 @@
 "" ===
 "" === NERDTree
 "" ===
-noremap tt :NERDTreeToggle<CR>
-"let NERDTreeMapOpenExpl = ""
-"let NERDTreeMapUpdir = "N"
-let NERDTreeMapUpdirKeepOpen = "h"
-let NERDTreeMapOpenSplit = "a"
-let NERDTreeMapOpenVSplit = "L"
-let NERDTreeMapActivateNode = "l"
-let NERDTreeMapChangeRoot = "l"
-let NERDTreeMapMenu = ","
-let NERDTreeMapToggleHidden = "<backspace>"
+"noremap tt :NERDTreeToggle<CR>
+""let NERDTreeMapOpenExpl = ""
+""let NERDTreeMapUpdir = "N"
+"let NERDTreeMapUpdirKeepOpen = "h"
+"let NERDTreeMapOpenSplit = "a"
+"let NERDTreeMapOpenVSplit = "L"
+"let NERDTreeMapActivateNode = "l"
+"let NERDTreeMapChangeRoot = "l"
+"let NERDTreeMapMenu = ","
+"let NERDTreeMapToggleHidden = "<backspace>"
 
 " ===
 " === FZF
@@ -156,7 +156,7 @@ endif
 " ===
 " === Ranger.vim
 " ===
-noremap W :Ranger<CR>
+noremap tt :Ranger<CR>
 let g:ranger_map_keys = 0
 
 

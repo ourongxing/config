@@ -225,7 +225,7 @@ hide_edge_borders smart_no_gaps
 exec --no-startup-id ~/.config/double_screen.sh
 
 bindsym Mod1+space exec chromium
-bindsym $mod+p exec picgo
+bindsym $mod+u exec picgo
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper/2.jpg
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id st

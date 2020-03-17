@@ -9,7 +9,6 @@ class paste_as_root(Command):
 			self.fm.execute_console('shell sudo cp -r %c .')
 
 
-
 class mkcd(Command):
     """
     :mkcd <dirname>
@@ -135,4 +134,3 @@ class extracthere(Command):
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
-
