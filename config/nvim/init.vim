@@ -6,25 +6,6 @@
 "                             |___/              |___/
 "
 " Author: @ourongxing & @theniceboy
-" ===
-" === Auto load for first time uses
-" ===
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" ===
-" === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
-" ===
-let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-    let has_machine_specific_file = 0
-    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-    silent! :e ~/.config/nvim/_machine_specific.vim
-endif
-source ~/.config/nvim/_machine_specific.vim
 
 " ===============================
 " ======== Editor Setup =========
@@ -115,7 +96,7 @@ noremap <silent> <LEADER>st :Startify<CR>
 noremap <silent> <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open up lazygit
-noremap <silent> <c-g> :term lazygit<CR>
+noremap <silent> <C-g> :term lazygit<CR>
 
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
@@ -146,11 +127,12 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 
 " Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<CR>
-noremap S <C-w>j:w<CR>
+noremap <LEADER>q :q<CR>
+noremap <LEADER>z ZZ
+noremap <LEADER>w :w<CR>
 
 " Clipboard
-vnoremap y "+y
+noremap <LEADER>y "+y
 
 " inner termidsdl esc
 " tnoremap <Esc> <C-\><C-n>
@@ -158,7 +140,7 @@ vnoremap y "+y
 noremap H ^
 noremap L $
 
-noremap U <C-r>
+nmap U <C-r>
 
 " noremap <LEADER><LEADER> <Esc>
 
@@ -183,10 +165,6 @@ noremap cdk :res -5<CR>
 noremap cdl :vertical resize+5<CR>
 noremap cdh :vertical resize-5<CR>
 
-" Place the two screens up and down
-noremap ch <C-w>t<C-w>K
-noremap cv <C-w>t<C-w>H
-
 " Rotate screens
 noremap crh <C-w>b<C-w>K
 noremap crv <C-w>b<C-w>H
@@ -197,7 +175,7 @@ noremap crv <C-w>b<C-w>H
 " figlet
 noremap tx :r !figlet
 
-noremap ;; :call CompileRunGcc()<CR>
+noremap <C-r> :call CompileRunGcc()<CR>
 noremap <silent> <leader>\ :Autoformat<CR>
 autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
 

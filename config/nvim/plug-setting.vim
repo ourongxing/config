@@ -16,17 +16,19 @@
 " === FZF
 " ===
 " 查找文件
-noremap <C-s> :FZF<CR>
+nmap <C-s> :FZF<CR>
 " 查找文件内容
-noremap <C-f> :Ag<CR>
+nmap <C-f> :Ag<CR>
 " 历史打开的文件
-noremap <C-m> :MRU<CR>
+nmap <C-m> :MRU<CR>
 " 缓冲区
-noremap <C-b> :Buffers<CR>
+nmap <C-b> :Buffers<CR>
 " 命令
-noremap <C-p> :Commands<CR>
+nmap <C-p> :Commands<CR>
 " 历史命令
-noremap <C-q> :History:<CR>
+nmap <C-q> :History:<CR>
+
+noremap <CR> :Ag<CR>
 
 autocmd! Filetype fzf
 autocmd  Filetype fzf set laststatus=0 noruler
@@ -248,17 +250,6 @@ let g:bullets_enabled_file_types = [
             \]
 
 " ==
-" == Multiple-cursors
-" ==
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-m>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
-" ==
 " == Rainbow
 " ==
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
@@ -300,14 +291,45 @@ let c_no_curly_error = 1
 " ==
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-nmap <Leader><leader>h <Plug>(easymotion-linebackward)
-nmap <Leader><Leader>j <Plug>(easymotion-j)
-nmap <Leader><Leader>k <Plug>(easymotion-k)
-nmap <Leader><leader>l <Plug>(easymotion-lineforward)
+nmap <silent> <Leader><leader>h <Plug>(easymotion-linebackward)
+nmap <silent> <Leader><Leader>j <Plug>(easymotion-j)
+nmap <silent> <Leader><Leader>k <Plug>(easymotion-k)
+nmap <silent> <Leader><leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
-nmap <Leader><leader>. <Plug>(easymotion-repeat)
+nmap <silent> <Leader><leader>. <Plug>(easymotion-repeat)
 
 " ==
 " == Comment
 " ==
 autocmd FileType stylus setlocal commentstring=//\ %s
+
+
+" ==
+" == Scroll
+" ==
+" 滚动平滑，交换半屏和全屏滚动
+let g:scroll_no_mappings = 1
+nmap <silent> <C-d> <Plug>scroll_page_down
+nmap <silent> <C-u> <Plug>scroll_page_up
+nmap <silent> <C-b> :Buffers<CR>
+nmap <silent> <C-f> :Ag<CR>
+nmap <silent> zz <Plug>scroll_center
+nmap <silent> zt <Plug>scroll_top
+
+" ==
+" == Visual Multi
+" ==
+let g:VM_default_mappings = 0
+let g:VM_maps = {}
+let g:VM_maps['Find Under']                  = 'M'
+let g:VM_maps['Find Subword Under']          = 'M'
+let g:VM_maps["Select All"]                  = '\\A' 
+let g:VM_maps["Start Regex Search"]          = '\\/'
+let g:VM_maps["Add Cursor Down"]             = '<C-Down>'
+let g:VM_maps["Add Cursor Up"]               = '<C-Up>'
+let g:VM_maps["Add Cursor At Pos"]           = '\\\'
+let g:VM_maps["Visual Regex"]                = '\\/'
+let g:VM_maps["Visual All"]                  = '\\A' 
+let g:VM_maps["Visual Add"]                  = '\\a'
+let g:VM_maps["Visual Find"]                 = '\\f'
+let g:VM_maps["Visual Cursors"]              = '\\c'

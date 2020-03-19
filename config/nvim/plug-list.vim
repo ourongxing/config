@@ -18,6 +18,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-speeddating'
 " =======================
 
+Plug 'mg979/scroll.vim'
+Plug 'mg979/vim-visual-multi'
+
 " Code change tree
 Plug 'mbbill/undotree'
 
@@ -35,9 +38,6 @@ Plug 'mhinz/vim-startify'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-" vim-multiple-cursors
-Plug 'terryma/vim-multiple-cursors'
 
 " Ranger
 Plug 'francoiscabrol/ranger.vim'
