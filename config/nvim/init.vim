@@ -80,6 +80,10 @@ autocmd Filetype python set foldlevel=99
 " ======== Basic Mappings =========
 " =================================
 "
+let g:python_host_prog='/home/orongxing/miniconda3/envs/python27/bin/python'
+let g:python3_host_prog='/home/orongxing/miniconda3/envs/python36/bin/python'
+let g:mkdp_browser = 'surf'
+
 " some functions
 source ~/.config/nvim/custom-utils.vim
 
@@ -113,7 +117,7 @@ noremap <silent> zl :loadview<CR>
 " 切换缓冲区
 noremap <silent> <C-j> :bp<CR>
 noremap <silent> <C-k> :bn<CR>
-noremap <silent> <Leader>x :bd<CR>
+noremap <silent> <Leader>x :w<CR>:bd<CR>
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -133,6 +137,7 @@ noremap <LEADER>w :w<CR>
 
 " Clipboard
 noremap <LEADER>y "+y
+noremap <LEADER>p "+p
 
 " inner termidsdl esc
 " tnoremap <Esc> <C-\><C-n>
@@ -168,9 +173,6 @@ noremap cdh :vertical resize-5<CR>
 " Rotate screens
 noremap crh <C-w>b<C-w>K
 noremap crv <C-w>b<C-w>H
-
-" 将两个空格转化为四个空格
-" noremap <silent> mm :set ts=2<CR>:set noexpandtab<CR>:%retab!<CR>:set ts=4<CR>:set expandtab<CR>:%retab!<CR>
 
 " figlet
 noremap tx :r !figlet

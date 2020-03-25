@@ -1,22 +1,24 @@
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
+        set splitbelow
         exec "!gcc % -o %<"
         :sp
-        :res -15
+        :res -20
         :term ./%<
     elseif &filetype == 'cpp'
         set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<"
+        :!g++ -std=c++11 % -Wall -o %<
         :sp
-        :res -15
+        :res -20
         :term ./%<
+        :normal i
     elseif &filetype == 'sh'
         :!time bash %
     elseif &filetype == 'python'
         set splitbelow
         :sp
-        :res -15
+        :res -20
         :term python3 %
     elseif &filetype == 'html'
         silent! exec "!firefox % &"

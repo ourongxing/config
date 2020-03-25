@@ -33,21 +33,17 @@ noremap <CR> :Ag<CR>
 autocmd! Filetype fzf
 autocmd  Filetype fzf set laststatus=0 noruler
             \| autocmd BufLeave <buffer> set laststatus=2 ruler
-
 command! -bang -nargs=* Buffers
             \ call fzf#vim#buffers(
             \       '',
             \       <bang>0 ? fzf#vim#with_preview('up:60%')
             \                       : fzf#vim#with_preview('right:0%', '?'),
             \       <bang>0)
-
-
 command! -bang -nargs=* LinesWithPreview
             \ call fzf#vim#grep(
             \       'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
             \       fzf#vim#with_preview({}, 'up:50%', '?'),
             \       1)
-
 command! -bang -nargs=* Ag
             \ call fzf#vim#ag(
             \       '',
@@ -56,7 +52,6 @@ command! -bang -nargs=* Ag
             \       <bang>0)
 
 command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
-
 command! -bang BTags
             \ call fzf#vim#buffer_tags('', {
             \       'down': '40%',
@@ -133,6 +128,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gn <Plug>(coc-rename)
 " 翻译
 nmap <silent> gf <Plug>(coc-translator-p)
+
 
 " ===
 " === Undotree
@@ -279,12 +275,12 @@ let g:rainbow_conf = {
 " ==
 " == cpp
 " ==
-let g:cpp_no_function_highlight = 0
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
+let g:cpp_no_function_highlight           = 0
+let g:cpp_class_scope_highlight           = 1
+let g:cpp_member_variable_highlight       = 1
+let g:cpp_class_decl_highlight            = 1
 let g:cpp_experimental_template_highlight = 1
-let c_no_curly_error = 1
+let c_no_curly_error                      = 1
 
 " ==
 " == EasyMotion
@@ -319,17 +315,18 @@ nmap <silent> zt <Plug>scroll_top
 " ==
 " == Visual Multi
 " ==
-let g:VM_default_mappings = 0
-let g:VM_maps = {}
-let g:VM_maps['Find Under']                  = 'M'
-let g:VM_maps['Find Subword Under']          = 'M'
-let g:VM_maps["Select All"]                  = '\\A' 
-let g:VM_maps["Start Regex Search"]          = '\\/'
-let g:VM_maps["Add Cursor Down"]             = '<C-Down>'
-let g:VM_maps["Add Cursor Up"]               = '<C-Up>'
-let g:VM_maps["Add Cursor At Pos"]           = '\\\'
-let g:VM_maps["Visual Regex"]                = '\\/'
-let g:VM_maps["Visual All"]                  = '\\A' 
-let g:VM_maps["Visual Add"]                  = '\\a'
-let g:VM_maps["Visual Find"]                 = '\\f'
-let g:VM_maps["Visual Cursors"]              = '\\c'
+" 这个插件增加了一个多光标模式，看似是visual，其实是normal，在这个模式下，大部分快捷键与normal相同
+" 在这个模式下，又出现了一个 leader 键，默认是\\
+" 有两类快捷键，一类是在visual/normal中生效的，二是在多光标下模式下生效
+let g:VM_maps                       = {}
+let g:VM_maps['Find Operator']      = ""
+let g:VM_maps['Find Under']         = 'm'
+let g:VM_maps['Find Subword Under'] = 'm'
+
+" ==
+" == Easy Align
+" ==
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

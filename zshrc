@@ -162,12 +162,13 @@ if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
     if [ -f "/home/orongxing/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/orongxing/miniconda3/etc/profile.d/conda.sh"
+. "/home/orongxing/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
     else
-        export PATH="/home/orongxing/miniconda3/bin:$PATH"
+export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize
     fi
 fi
 unset __conda_setup
+conda activate python36
 
 # NVM
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
@@ -179,3 +180,5 @@ export PATH=$HOME/.nvm/versions/node/v13.5.0/bin/:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+

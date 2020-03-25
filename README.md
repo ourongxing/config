@@ -1,1 +1,1 @@
-## some configs on linux
+# some configs on linux

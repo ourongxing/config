@@ -10,7 +10,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " Tpope is so powerful
-" ====================== 
+" ======================
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -46,6 +46,9 @@ Plug 'rbgrouleff/bclose.vim'
 " Auto to format
 Plug 'Chiel92/vim-autoformat'
 
+" 
+Plug 'junegunn/vim-easy-align'
+
 " Rainbow bracket
 Plug 'luochen1990/rainbow'
 
@@ -58,11 +61,14 @@ Plug 'yianwillis/vimcdoc'
 " EasyMOtion
 Plug 'Lokaltog/vim-easymotion'
 
-" Cpp
-Plug 'octol/vim-cpp-enhanced-highlight' 
+" colorize all rgb text
+Plug 'lilydjwg/colorizer'
 
-" 
+"
 Plug 'honza/vim-snippets'
+
+" Cpp
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
@@ -89,8 +95,5 @@ Plug 'tweekmonster/braceless.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for' :['markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
-
-" colorize all rgb text
-Plug 'lilydjwg/colorizer'
 
 call plug#end()
