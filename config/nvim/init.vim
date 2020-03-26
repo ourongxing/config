@@ -82,6 +82,7 @@ autocmd Filetype python set foldlevel=99
 "
 let g:python_host_prog='/home/orongxing/miniconda3/envs/python27/bin/python'
 let g:python3_host_prog='/home/orongxing/miniconda3/envs/python36/bin/python'
+" markdown_preview
 let g:mkdp_browser = 'surf'
 
 " some functions
@@ -94,16 +95,16 @@ source ~/.config/nvim/custom-snippets.vim
 let mapleader=" "
 
 " Open Startify
-noremap <silent> <LEADER>st :Startify<CR>
+nnoremap <silent> <LEADER>st :Startify<CR>
 
 " Open the vimrc file anytime
-noremap <silent> <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent> <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open up lazygit
-noremap <silent> <C-g> :term lazygit<CR>
+nnoremap <silent> <C-g> :term lazygit<CR>
 
 " Remove search highlighting
-noremap <silent> <LEADER><CR> :nohlsearch<CR>
+nnoremap <silent> <LEADER><CR> :nohlsearch<CR>
 
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -111,13 +112,13 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 " 保存和加载折叠
-noremap <silent> zs :mkview<CR>
-noremap <silent> zl :loadview<CR>
+nnoremap <silent> zs :mkview<CR>
+nnoremap <silent> zl :loadview<CR>
 
 " 切换缓冲区
-noremap <silent> <C-j> :bp<CR>
-noremap <silent> <C-k> :bn<CR>
-noremap <silent> <Leader>x :w<CR>:bd<CR>
+nnoremap <silent> <C-j> :bp<CR>
+nnoremap <silent> <C-k> :bn<CR>
+nnoremap <silent> <Leader>x :w<CR>:bd<CR>
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -131,55 +132,55 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 
 " Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q :q<CR>
-noremap <LEADER>z ZZ
-noremap <LEADER>w :w<CR>
+nnoremap <LEADER>q :q<CR>
+nnoremap <LEADER>z ZZ
+nnoremap <LEADER>w :w<CR>
 
 " Clipboard
-noremap <LEADER>y "+y
-noremap <LEADER>p "+p
+nnoremap <LEADER>y "+y
+nnoremap <LEADER>p "+p
 
 " inner termidsdl esc
 " tnoremap <Esc> <C-\><C-n>
 
-noremap H ^
-noremap L $
+nnoremap H ^
+nnoremap L $
 
 nmap U <C-r>
 
-" noremap <LEADER><LEADER> <Esc>
+" nnoremap <LEADER><LEADER> <Esc>
 
 " Press ` to change case (instead of ~)
 " 快速切换首字母大小写
 " ~的作用就是切换大小写
-noremap ` b~
+nnoremap ` b~
 
 " ===
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap cw  <C-w>w
+nnoremap cw  <C-w>w
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap ck :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap cl :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+nnoremap ck :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+nnoremap cl :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 
 " Resize splits with arrow keys
-noremap cdj :res +5<CR>
-noremap cdk :res -5<CR>
-noremap cdl :vertical resize+5<CR>
-noremap cdh :vertical resize-5<CR>
+nnoremap cdj :res +5<CR>
+nnoremap cdk :res -5<CR>
+nnoremap cdl :vertical resize+5<CR>
+nnoremap cdh :vertical resize-5<CR>
 
 " Rotate screens
-noremap crh <C-w>b<C-w>K
-noremap crv <C-w>b<C-w>H
+nnoremap crh <C-w>b<C-w>K
+nnoremap crv <C-w>b<C-w>H
 
 " figlet
-noremap tx :r !figlet
+nnoremap tx :r !figlet
 
-noremap <C-r> :call CompileRunGcc()<CR>
-noremap <silent> <leader>\ :Autoformat<CR>
-autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
+nnoremap <C-r> :call CompileRunGcc()<CR>
+nnoremap <silent> <leader>\ :Autoformat<CR>
+autocmd Filetype markdown nnoremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
 
 " =================================
 " = Install Plugins with Vim-Plug =

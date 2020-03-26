@@ -229,6 +229,7 @@ bindsym $mod+u exec picgo
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper/2.jpg
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id st
+exec_always --no-startup-id 'libinput-gestures-setup restart'
 exec volumeicon
 exec_always fcitx
 exec --no-startup-id v2raya
