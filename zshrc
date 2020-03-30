@@ -86,12 +86,15 @@ alias bat='tlp bat'
 alias ac='tlp ac'
 alias lg='lazygit'
 alias hexod="bash ~/orxing-blog/hexo-deploy.sh"
+alias fmax="find ./ -type f -print0 | xargs -0 du -h | sort -rh | head -n 10"
 # don't use rm
 alias tp='trash-put'           # trash files and directories.
 alias te='trash-empty'         # empty the trashcan(s).
 alias tl='trash-list'          # list trashed files.
 alias tr='trash-restore'       # restore a trashed file.
 # trash-rm            # remove individual files from the trashcan.
+# tldr man
+alias man='tldr'
 
 
 # =====

@@ -28,7 +28,7 @@ nmap <C-p> :Commands<CR>
 " 历史命令
 nmap <C-q> :History:<CR>
 
-noremap <CR> :Ag<CR>
+noremap <CR> <nop>
 
 autocmd! Filetype fzf
 autocmd  Filetype fzf set laststatus=0 noruler
