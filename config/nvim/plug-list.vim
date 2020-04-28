@@ -2,11 +2,8 @@ call plug#begin('~/.config/nvim/plug')
 
 " Theme
 Plug 'ryanoasis/vim-devicons'
-Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'itchyny/lightline.vim'
-" Plug 'mkitt/tabline.vim'
-" Plug 'bling/vim-bufferline'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " Tpope is so powerful
@@ -26,8 +23,6 @@ Plug 'mbbill/undotree'
 
 " Auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
-
-" Plug 'airblade/vim-gitgutter'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -49,6 +44,9 @@ Plug 'Chiel92/vim-autoformat'
 " 
 Plug 'junegunn/vim-easy-align'
 
+"
+Plug 'jwarby/antovim'
+
 " Rainbow bracket
 Plug 'luochen1990/rainbow'
 
@@ -66,6 +64,7 @@ Plug 'lilydjwg/colorizer'
 
 "
 Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
 
 " Cpp
 Plug 'octol/vim-cpp-enhanced-highlight'

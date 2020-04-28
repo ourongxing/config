@@ -40,7 +40,6 @@ zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 # vi-mode
 zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
@@ -73,15 +72,13 @@ export DOWNGRADE_FROM_ALA=1
 # =====
 
 alias note='vim ~/.note.md'
-alias aria='aria2c -D --conf-path=/home/orongxing/.aria2.conf'
-alias ls="exa"
+alias ll="exa -l"
 alias open='xdg-open'
 alias vim='nvim'
 alias ra='ranger'
-alias sudo='sudo '
+alias sudo='sudo -E '
 alias c='clear'
 alias s='screenfetch'
-alias cat='ccat'
 alias bat='tlp bat'
 alias ac='tlp ac'
 alias lg='lazygit'
@@ -95,6 +92,7 @@ alias tr='trash-restore'       # restore a trashed file.
 # trash-rm            # remove individual files from the trashcan.
 # tldr man
 alias man='tldr'
+alias q='exit'
 
 
 # =====
@@ -127,15 +125,6 @@ export FZF_COMPLETION_TRIGGER='\'
 export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Jump to previous folder
-cdlast() {
-  cd -
-  #ls -lrth --color=auto | tail
-  zle reset-prompt
-}
-zle -N cdlast
-bindkey '^Z' cdlast
-
 zsh_stats () {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
 }
@@ -155,6 +144,9 @@ function ranger {
     fi
     command rm -f -- "$tempfile" 2>/dev/null
 }
+
+
+
 
 # Thefuck
 eval $(thefuck --alias)
@@ -183,5 +175,3 @@ export PATH=$HOME/.nvm/versions/node/v13.5.0/bin/:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-

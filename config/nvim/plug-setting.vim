@@ -22,7 +22,7 @@ nmap <C-f> :Ag<CR>
 " 历史打开的文件
 nmap <C-m> :MRU<CR>
 " 缓冲区
-nmap <C-b> :Buffers<CR>
+" nmap <C-b> :Buffers<CR>
 " 命令
 nmap <C-p> :Commands<CR>
 " 历史命令
@@ -69,14 +69,31 @@ command! -bang BTags
 " ===
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap
-let g:coc_global_extensions = ['coc-pairs', 'coc-snippets', 'coc-translator', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-stylelint', 'coc-tabnine', 'coc-html', 'coc-gitignore']
+let g:coc_global_extensions = [
+            \ 'coc-snippets', 
+            \ 'coc-translator', 
+            \ 'coc-python', 
+            \ 'coc-vimlsp', 
+            \ 'coc-html', 
+            \ 'coc-json', 
+            \ 'coc-css', 
+            \ 'coc-tsserver', 
+            \ 'coc-yank', 
+            \ 'coc-stylelint', 
+            \ 'coc-tabnine', 
+            \ 'coc-html', 
+            \ 'coc-gitignore'
+            \ ]
+
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" use <tab> for trigger completion and navigate to the next complete item
+
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]    =~ '\s'
 endfunction
+
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
 let g:LanguageClient_serverCommands = {
             \ 'sh': ['bash-language-server', 'start']
             \ }
@@ -85,16 +102,10 @@ inoremap <silent><expr> <Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<Tab>" :
             \ coc#refresh()
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]    =~# '\s'
-endfunction
+
 let g:coc_snippet_next = '<tab>'
 
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <c-space> coc#refresh()
-
-"解决coc.nvim大文件卡死状况
+" 解决coc.nvim大文件卡死状况
 let g:trigger_size = 0.5 * 1048576
 augroup hugefile
   autocmd!
@@ -320,8 +331,8 @@ nmap <silent> zt <Plug>scroll_top
 " 有两类快捷键，一类是在visual/normal中生效的，二是在多光标下模式下生效
 let g:VM_maps                       = {}
 let g:VM_maps['Find Operator']      = ""
-let g:VM_maps['Find Under']         = 'm'
-let g:VM_maps['Find Subword Under'] = 'm'
+let g:VM_maps['Find Under']         = 'M'
+let g:VM_maps['Find Subword Under'] = 'M'
 
 " ==
 " == Easy Align
@@ -330,3 +341,12 @@ let g:VM_maps['Find Subword Under'] = 'm'
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" ==
+" == vimspector
+" ==
+
+" ==
+" == false/false
+" ==
+

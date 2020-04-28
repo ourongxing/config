@@ -22,3 +22,4 @@ autocmd Filetype markdown inoremap <buffer> <silent> ;d {% download  <++> %} <++
 autocmd filetype        c inoremap <buffer> <silent> ;; <Esc>A;<CR>
 autocmd filetype      cpp inoremap <buffer> <silent> ;; <Esc>A;<CR>
 autocmd Filetype     json inoremap <buffer> <silent> ;k %keyword%
+inoremap <buffer> <silent> ;l <Esc>A {}<Esc>i

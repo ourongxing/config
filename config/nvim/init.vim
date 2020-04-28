@@ -56,12 +56,14 @@ set wildmenu
 set ignorecase
 set smartcase
 set shortmess+=c
+set noswapfile     " no swap files
 set inccommand=split
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 set visualbell
 "set colorcolumn=80
 set updatetime=1000
+set wildmode=list:longest
 let g:deoplete#enable_at_startup = 1
 
 " when python
@@ -96,13 +98,13 @@ source ~/.config/nvim/custom-snippets.vim
 let mapleader=" "
 
 " Open Startify
-noremap <silent> <LEADER>st :Startify<CR>
+noremap <silent> <LEADER>tt :Startify<CR>
 
 " Open the vimrc file anytime
 noremap <silent> <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open up lazygit
-noremap <silent> <C-g> :term lazygit<CR>
+noremap <silent> <C-g> :term lazygit<CR>i
 
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
@@ -179,7 +181,7 @@ noremap crv <C-w>b<C-w>H
 " figlet
 noremap tx :r !figlet
 
-noremap R :call CompileRunGcc()<CR>
+noremap <F5> :call CompileRunGcc()<CR>
 noremap <silent> <leader>\ :Autoformat<CR>
 autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
 
