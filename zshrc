@@ -145,9 +145,6 @@ function ranger {
     command rm -f -- "$tempfile" 2>/dev/null
 }
 
-
-
-
 # Thefuck
 eval $(thefuck --alias)
 
