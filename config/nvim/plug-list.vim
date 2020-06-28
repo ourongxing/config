@@ -11,9 +11,10 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-speeddating'
 " =======================
+
+Plug 'preservim/nerdcommenter'
 
 Plug 'mg979/scroll.vim'
 Plug 'mg979/vim-visual-multi'
@@ -68,6 +69,9 @@ Plug 'jiangmiao/auto-pairs'
 
 " Cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+" vue
+Plug 'posva/vim-vue'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'

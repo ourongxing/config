@@ -77,6 +77,7 @@ let g:coc_global_extensions = [
             \ 'coc-html', 
             \ 'coc-json', 
             \ 'coc-css', 
+            \ 'coc-vetur', 
             \ 'coc-tsserver', 
             \ 'coc-yank', 
             \ 'coc-stylelint', 
@@ -306,10 +307,56 @@ nmap <silent> <Leader><leader>l <Plug>(easymotion-lineforward)
 nmap <silent> <Leader><leader>. <Plug>(easymotion-repeat)
 
 " ==
-" == Comment
+" == nerdcommenter
 " ==
-autocmd FileType stylus setlocal commentstring=//\ %s
+nmap <silent> gcc <Plug>NERDCommenterToggle<cr>
+vmap <silent> gc <Plug>NERDCommenterToggle<cr>
 
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+let g:NERDCustomDelimiters = { 'stylus': { 'left': '//'} }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
+
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
 
 " ==
 " == Scroll
@@ -343,10 +390,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " ==
-" == vimspector
+" == vim-vue
 " ==
-
-" ==
-" == false/false
-" ==
-
+" vue中只高亮存在的文件格式
+let g:vue_pre_processors = 'detect_on_enter'
