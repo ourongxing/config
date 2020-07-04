@@ -64,6 +64,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
 export RANGER_LOAD_DEFAULT_RC="false"
 export EDITOR=nvim
+export TERMINAL=st
 export DOWNGRADE_FROM_ALA=1
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
@@ -75,12 +76,11 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 alias note='vim ~/.note.md'
 alias ll="exa -l"
-alias open='xdg-open'
 alias vim='nvim'
 alias ra='ranger'
 alias sudo='sudo -E '
 alias c='clear'
-alias s='screenfetch'
+alias s='neofetch'
 alias bat='tlp bat'
 alias ac='tlp ac'
 alias lg='lazygit'
@@ -92,8 +92,6 @@ alias te='trash-empty'         # empty the trashcan(s).
 alias tl='trash-list'          # list trashed files.
 alias tr='trash-restore'       # restore a trashed file.
 # trash-rm            # remove individual files from the trashcan.
-# tldr man
-alias man='tldr'
 alias q='exit'
 
 
@@ -150,27 +148,30 @@ function ranger {
 # Thefuck
 eval $(thefuck --alias)
 
-# Conda 
-__conda_setup="$('/home/orongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/orongxing/miniconda3/etc/profile.d/conda.sh" ]; then
-. "/home/orongxing/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
-    else
-export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize
-    fi
-fi
-unset __conda_setup
-conda activate python36
-
 # NVM
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-export PATH=$HOME/.nvm/versions/node/v13.5.0/bin/:$PATH
+export PATH=$HOME/.nvm/versions/node/v14.0.0/bin/:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+### End of Zinit's installer chunk
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ourongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ourongxing/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ourongxing/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ourongxing/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+conda activate python36
+# <<< conda initialize <<<
