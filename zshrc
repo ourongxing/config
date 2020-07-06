@@ -119,17 +119,19 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # FZF
-export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_COMPLETION_TRIGGER='\'
-export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fzf_init() {
+    export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+    export FZF_COMPLETION_TRIGGER='\'
+    export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
 
 zsh_stats () {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
 }
 
-function ranger {
+ranger () {
     local IFS=$'\t\n'
     local tempfile="$(mktemp -t tmp.XXXXXX)"
     local ranger_cmd=(
@@ -147,21 +149,21 @@ function ranger {
 
 # Thefuck
 eval $(thefuck --alias)
+source ~/.zsh-defer/zsh-defer.plugin.zsh
 
 # NVM
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-export PATH=$HOME/.nvm/versions/node/v14.0.0/bin/:$PATH
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-### End of Zinit's installer chunk
+nvm_init () {
+    export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+    export NVM_DIR="$HOME/.nvm"
+    # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
+    export PATH=$HOME/.nvm/versions/node/v14.0.0/bin/:$PATH
+}
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
+conda_init () {
 __conda_setup="$('/home/ourongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -175,3 +177,12 @@ fi
 unset __conda_setup
 conda activate python36
 # <<< conda initialize <<<
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+### End of Zinit's installer chunk
+
+zsh-defer conda_init
+zsh-defer nvm_init
+zsh-defer fzf_init
