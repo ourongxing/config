@@ -1,7 +1,7 @@
 # =====
 # ===== Start
 # =====
-
+#
 # 将光标切换为插入模式
 echo -ne '\e[5 q'
 # 加载p10k-instant-prompt
