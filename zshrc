@@ -1,7 +1,7 @@
 # =====
 # ===== Start
 # =====
-#
+
 # 将光标切换为插入模式
 echo -ne '\e[5 q'
 # 加载p10k-instant-prompt
@@ -62,13 +62,16 @@ export PATH="/home/orongxing/miniconda3/envs/python36/bin:$PATH"  # commented ou
 export PATH="/home/orongxing/miniconda3/envs/python27/bin:$PATH"  # commented out by conda initialize
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
+export PATH="$HOME/.yarn/bin:$PATH"
 export RANGER_LOAD_DEFAULT_RC="false"
-export EDITOR=nvim
-export TERMINAL=st
 export DOWNGRADE_FROM_ALA=1
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
+# ranger 环境变量
+export EDITOR=nvim
+export TERMINAL=st
+export SHELL=zsh
 
 # =====
 # ===== Alias
@@ -81,6 +84,7 @@ alias ra='ranger'
 alias sudo='sudo -E '
 alias c='clear'
 alias s='neofetch'
+alias sound='alsamixer'
 alias bat='tlp bat'
 alias ac='tlp ac'
 alias lg='lazygit'
@@ -158,7 +162,7 @@ nvm_init () {
     # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
     nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-    export PATH=$HOME/.nvm/versions/node/v14.0.0/bin/:$PATH
+    export PATH=$HOME/.nvm/versions/node/v12.18.0/bin/:$PATH
 }
 
 # >>> conda initialize >>>
@@ -186,3 +190,5 @@ conda activate python36
 zsh-defer conda_init
 zsh-defer nvm_init
 zsh-defer fzf_init
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

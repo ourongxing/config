@@ -21,7 +21,8 @@ func! CompileRunGcc()
         :res -10
         :term python3 %
     elseif &filetype == 'html'
-        silent! exec "!firefox % &"
+        silent! exec "!reload -p 4444&"
+        silent! exec "!surf 127.0.0.1:4444"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     elseif &filetype == 'go'

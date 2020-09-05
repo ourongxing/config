@@ -1,17 +1,3 @@
-"" ===
-"" === NERDTree
-"" ===
-"noremap tt :NERDTreeToggle<CR>
-""let NERDTreeMapOpenExpl = ""
-""let NERDTreeMapUpdir = "N"
-"let NERDTreeMapUpdirKeepOpen = "h"
-"let NERDTreeMapOpenSplit = "a"
-"let NERDTreeMapOpenVSplit = "L"
-"let NERDTreeMapActivateNode = "l"
-"let NERDTreeMapChangeRoot = "l"
-"let NERDTreeMapMenu = ","
-"let NERDTreeMapToggleHidden = "<backspace>"
-
 " ===
 " === FZF
 " ===
@@ -32,115 +18,64 @@ noremap <CR> <nop>
 
 autocmd! Filetype fzf
 autocmd  Filetype fzf set laststatus=0 noruler
-            \| autocmd BufLeave <buffer> set laststatus=2 ruler
+      \| autocmd BufLeave <buffer> set laststatus=2 ruler
 command! -bang -nargs=* Buffers
-            \ call fzf#vim#buffers(
-            \       '',
-            \       <bang>0 ? fzf#vim#with_preview('up:60%')
-            \                       : fzf#vim#with_preview('right:0%', '?'),
-            \       <bang>0)
+      \ call fzf#vim#buffers(
+      \       '',
+      \       <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                       : fzf#vim#with_preview('right:0%', '?'),
+      \       <bang>0)
 command! -bang -nargs=* LinesWithPreview
-            \ call fzf#vim#grep(
-            \       'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
-            \       fzf#vim#with_preview({}, 'up:50%', '?'),
-            \       1)
+      \ call fzf#vim#grep(
+      \       'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
+      \       fzf#vim#with_preview({}, 'up:50%', '?'),
+      \       1)
 command! -bang -nargs=* Ag
-            \ call fzf#vim#ag(
-            \       '',
-            \       <bang>0 ? fzf#vim#with_preview('up:60%')
-            \                       : fzf#vim#with_preview('right:50%', '?'),
-            \       <bang>0)
+      \ call fzf#vim#ag(
+      \       '',
+      \       <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                       : fzf#vim#with_preview('right:50%', '?'),
+      \       <bang>0)
 
 command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
-command! -bang BTags
-            \ call fzf#vim#buffer_tags('', {
-            \       'down': '40%',
-            \       'options': '--with-nth 1
-            \                   --reverse
-            \                   --prompt "> "
-            \                   --preview-window="70%"
-            \                   --preview "
-            \                           tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
-            \                           head -n 16"'
-            \ })
 
 " ===
 " === coc
 " ===
-" fix the most annoying bug that coc has
-            " \ 'coc-snippets',
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap
 let g:coc_global_extensions = [
-            \ 'coc-translator', 
-            \ 'coc-python', 
-            \ 'coc-vimlsp', 
-            \ 'coc-html', 
-            \ 'coc-json', 
-            \ 'coc-css', 
-            \ 'coc-vetur', 
-            \ 'coc-tsserver', 
-            \ 'coc-yank', 
-            \ 'coc-stylelint', 
-            \ 'coc-tabnine', 
-            \ 'coc-html', 
-            \ 'coc-gitignore'
-            \ ]
+      \ 'coc-actions',
+      \ 'coc-css',
+      \ 'coc-gitignore',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-prettier',
+      \ 'coc-pyright',
+      \ 'coc-python',
+      \ 'coc-snippets',
+      \ 'coc-stylelint',
+      \ 'coc-syntax',
+      \ 'coc-translator',
+      \ 'coc-tslint-plugin',
+      \ 'coc-tsserver',
+      \ 'coc-vimlsp',
+      \ 'coc-vetur',
+      \ 'coc-yaml',
+      \ 'coc-yank']
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" UltiSnips 插件提前绑定了tab
+let g:UltiSnipsExpandTrigger = '<f5>'
 
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<tab>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]    =~ '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
-let g:LanguageClient_serverCommands = {
-            \ 'sh': ['bash-language-server', 'start']
-            \ }
-
-inoremap <silent><expr> <Tab>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<Tab>" :
-            \ coc#refresh()
-
-let g:coc_snippet_next = '<tab>'
-
-" 解决coc.nvim大文件卡死状况
-let g:trigger_size = 0.5 * 1048576
-augroup hugefile
-  autocmd!
-  autocmd BufReadPre *
-        \ let size = getfsize(expand('<afile>')) |
-        \ if (size > g:trigger_size) || (size == -2) |
-        \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
-        \   exec 'CocDisable' |
-        \ else |
-        \   exec 'CocEnable' |
-        \ endif |
-        \ unlet size
-augroup END
-
-" 延迟启动
-let g:coc_start_at_startup=0
-function! CocTimerStart(timer)
-    exec "CocStart"
-endfunction
-call timer_start(500,'CocTimerStart',{'repeat':1})
-
-" Useful Commands
-" 剪贴板
-nmap <silent> gp :<C-u>CocList --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-" 查看定义
-nmap <silent> gr <Plug>(coc-references)
-" 用于修改变量名字，超级好用
-nmap <silent> gn <Plug>(coc-rename)
-" 翻译
-nmap <silent> gf <Plug>(coc-translator-p)
-
 
 " ===
 " === Undotree
@@ -153,14 +88,14 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-    nmap <buffer> k <plug>UndotreeNextState
-    nmap <buffer> j <plug>UndotreePreviousState
-    nmap <buffer> K 5<plug>UndotreeNextState
-    nmap <buffer> J 5<plug>UndotreePreviousState
+  nmap <buffer> k <plug>UndotreeNextState
+  nmap <buffer> j <plug>UndotreePreviousState
+  nmap <buffer> K 5<plug>UndotreeNextState
+  nmap <buffer> J 5<plug>UndotreePreviousState
 endfunc
 if has("persistent_undo")
-    set undodir=$HOME/.cache/vim/undo
-    set undofile
+  set undodir=$HOME/.cache/vim/undo
+  set undofile
 endif
 
 " ===
@@ -182,14 +117,14 @@ let g:mkdp_open_ip = ''
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-            \ 'mkit': {},
-            \ 'katex': {},
-            \ 'uml': {},
-            \ 'maid': {},
-            \ 'disable_sync_scroll': 0,
-            \ 'sync_scroll_type': 'middle',
-            \ 'hide_yaml_meta': 1
-            \ }
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 1
+      \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -201,26 +136,26 @@ let g:mkdp_page_title = '「${name}」'
 set laststatus=2
 set showtabline=2
 let g:lightline = {
-            \ 'colorscheme': 'darcula',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'readonly', 'filename' ] ]
-            \ },
-            \ 'component_function': {
-            \   'filename': 'LightlineFilename',
-            \   'readonly': 'LightlineReadonly',
-            \   'gitbranch': 'FugitiveHead'
-            \ },
-            \ 'tabline': {
-            \   'left': [['buffers']], 'right': []
-            \ },
-            \ 'component_expand': {
-            \   'buffers': 'lightline#bufferline#buffers'
-            \ },
-            \ 'component_type': {
-            \   'buffers': 'tabsel'
-            \ }
-            \ }
+      \ 'colorscheme': 'darcula',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'readonly': 'LightlineReadonly',
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ 'tabline': {
+      \   'left': [['buffers']], 'right': []
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ }
+      \ }
 
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
@@ -234,6 +169,7 @@ endfunction
 
 " 低于两个buffer时不显示
 let g:lightline#bufferline#min_buffer_count = 2
+
 let g:lightline#bufferline#show_number  = 2
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#enable_devicons = 1
@@ -251,38 +187,38 @@ let g:lightline#bufferline#filename_modifier = ':t'
 " == Bullets
 " ==
 let g:bullets_enabled_file_types = [
-            \ 'markdown',
-            \ 'text',
-            \ 'gitcommit',
-            \ 'scratch'
-            \]
+      \ 'markdown',
+      \ 'text',
+      \ 'gitcommit',
+      \ 'scratch'
+      \]
 
 " ==
 " == Rainbow
 " ==
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
-            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-            \   'operators': '_,_',
-            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-            \   'separately': {
-            \       '*': {},
-            \       'tex': {
-            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-            \       },
-            \       'lisp': {
-            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \       },
-            \       'vim': {
-            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-            \       },
-            \       'html': {
-            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-            \       },
-            \       'css': 0,
-            \   }
-            \}
+      \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+      \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+      \   'operators': '_,_',
+      \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+      \   'separately': {
+      \       '*': {},
+      \       'tex': {
+      \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+      \       },
+      \       'lisp': {
+      \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+      \       },
+      \       'vim': {
+      \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+      \       },
+      \       'html': {
+      \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+      \       },
+      \       'css': 0,
+      \   }
+      \}
 
 " ==
 " == cpp
@@ -334,7 +270,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 
@@ -393,7 +329,7 @@ nmap ga <Plug>(EasyAlign)
 " == vim-vue
 " ==
 " vue中只高亮存在的文件格式
-let g:vue_pre_processors = 'detect_on_enter'
+let g:vue_pre_processors = ['pug', 'stylus']
 
 " ==
 " == vim-snippets

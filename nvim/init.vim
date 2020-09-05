@@ -25,25 +25,23 @@ set autochdir
 set number
 set relativenumber
 set cursorline
-set tabstop=4
+set tabstop=2
 set noshowmode
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 set autoread
 set go=
 set hidden
 set helplang=cn
-set list
-set listchars=tab:\|\ ,trail:▫
 set scrolloff=4
 set ttimeoutlen=0
 set notimeout
 set viewoptions=cursor,folds,slash,unix
 set wrap "自动换行
 " set linebreak "整字换行
-set tw=0
+set tw=0 
 set indentexpr=
 set foldmethod=manual
 set foldlevel=99
@@ -62,28 +60,16 @@ set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 set visualbell
 "set colorcolumn=80
-set updatetime=1000
+set updatetime=100
 set wildmode=list:longest
 let g:deoplete#enable_at_startup = 1
-
-" when python
-let python_highlight_all=1
-autocmd Filetype python set tabstop=4
-autocmd Filetype python set softtabstop=4
-autocmd Filetype python set shiftwidth=4
-autocmd Filetype python set textwidth=79
-autocmd Filetype python set expandtab
-autocmd Filetype python set autoindent
-autocmd Filetype python set fileformat=unix
-autocmd Filetype python set foldmethod=indent
-autocmd Filetype python set foldlevel=99
 
 " =================================
 " ======== Basic Mappings =========
 " =================================
-"``
-let g:python_host_prog='/home/ourongxing/miniconda3/envs/python27/bin/python'
-let g:python3_host_prog='/home/ourongxing/miniconda3/envs/python36/bin/python'
+"
+let g:python_host_prog='~/miniconda3/envs/python27/bin/python'
+let g:python3_host_prog='~/miniconda3/envs/python36/bin/python'
 
 " markdown_preview
 let g:mkdp_browser = 'surf'
@@ -184,6 +170,12 @@ noremap tx :r !figlet
 noremap <F5> :call CompileRunGcc()<CR>
 noremap <silent> <leader>\ :Autoformat<CR>
 autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
+
+" Easy indent for code blocks
+nmap <tab>      v>
+nmap <s-tab>    v<
+vmap <tab>      >gv
+vmap <s-tab>    <gv
 
 " =================================
 " = Install Plugins with Vim-Plug =
