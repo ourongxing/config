@@ -62,6 +62,7 @@ set visualbell
 "set colorcolumn=80
 set updatetime=100
 set wildmode=list:longest
+set termguicolors
 let g:deoplete#enable_at_startup = 1
 
 " =================================

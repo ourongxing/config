@@ -45,6 +45,8 @@ command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
 let g:coc_global_extensions = [
       \ 'coc-actions',
       \ 'coc-css',
+      \ 'coc-sh',
+      \ 'coc-clangd',
       \ 'coc-gitignore',
       \ 'coc-html',
       \ 'coc-json',
@@ -61,7 +63,7 @@ let g:coc_global_extensions = [
       \ 'coc-vetur',
       \ 'coc-yaml',
       \ 'coc-yank']
-
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " UltiSnips 插件提前绑定了tab
 let g:UltiSnipsExpandTrigger = '<f5>'
 
@@ -76,6 +78,34 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+inoremap <silent><expr> <c-o> coc#refresh()
+nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
+nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
+nnoremap <c-c> :CocCommand<CR>
+
+" coc-translator
+nmap ts <Plug>(coc-translator-p)
+vmap ts <Plug>(coc-translator-pv)
+" replace
+nmap tr <Plug>(coc-translator-r)
+vmap tr <Plug>(coc-translator-rv)
+
+" 变量重命名
+nmap <leader>rn <Plug>(coc-rename)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " ===
 " === Undotree
@@ -335,3 +365,11 @@ let g:vue_pre_processors = ['pug', 'stylus']
 " == vim-snippets
 " ==
 let g:UltiSnipsSnippetDirectories=["UltiSnips","~/Github/snippets"]
+
+
+" ==
+" == highlight
+" ==
+" 包括相同单词高亮和颜色高亮
+hi illuminatedWord cterm=underline gui=underline
+let g:Hexokinase_highlighters = ['backgroundfull']
