@@ -63,7 +63,10 @@ let g:coc_global_extensions = [
       \ 'coc-vetur',
       \ 'coc-yaml',
       \ 'coc-yank']
+
+" 相同单词高亮显示
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " UltiSnips 插件提前绑定了tab
 let g:UltiSnipsExpandTrigger = '<f5>'
 

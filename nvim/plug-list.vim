@@ -49,12 +49,11 @@ Plug 'junegunn/vim-easy-align'
 Plug 'jwarby/antovim'
 
 " Git
-Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+" Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
-"Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
-
+"
 " Rainbow bracket
 Plug 'luochen1990/rainbow'
 
