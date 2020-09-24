@@ -57,16 +57,14 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 # =====
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export PATH="/home/orongxing/miniconda3/bin:$PATH"  # commented out by conda initialize  # commented out by conda initialize
 export PATH="/home/orongxing/miniconda3/envs/python36/bin:$PATH"  # commented out by conda initialize
 export PATH="/home/orongxing/miniconda3/envs/python27/bin:$PATH"  # commented out by conda initialize
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export RANGER_LOAD_DEFAULT_RC="false"
 export DOWNGRADE_FROM_ALA=1
-export PUB_HOSTED_URL=https://pub.flutter-io.cn
-export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 # ranger 环境变量
 export EDITOR=nvim
@@ -78,6 +76,7 @@ export SHELL=zsh
 # =====
 
 alias note='vim ~/.note.md'
+alias jn='jupyter notebook --ip=0.0.0.0 --allow-root'
 alias ll="exa -l"
 alias vim='nvim'
 alias ra='ranger'
@@ -97,6 +96,7 @@ alias tl='trash-list'          # list trashed files.
 alias tr='trash-restore'       # restore a trashed file.
 # trash-rm            # remove individual files from the trashcan.
 alias q='exit'
+alias proxy='export ALL_PROXY=socks5://127.0.0.1:1080'
 
 
 # =====
@@ -190,5 +190,3 @@ conda activate python36
 zsh-defer conda_init
 zsh-defer nvm_init
 zsh-defer fzf_init
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

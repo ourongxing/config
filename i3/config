@@ -18,7 +18,6 @@ font pango:monospace 8
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -224,7 +223,7 @@ hide_edge_borders smart_no_gaps
 bindsym Mod1+space exec chromium
 bindsym $mod+u exec picgo
 exec_always --no-startup-id feh --bg-scale ~/Picture/wallpaper/2.jpg
-exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -bCG
 exec_always --no-startup-id st
 # exec_always --no-startup-id blueberry
 exec_always --no-startup-id libinput-gestures-setup restart
@@ -242,5 +241,5 @@ workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-exec_always --no-startup-id fcitx5
+exec --no-startup-id fcitx5
 exec --no-startup-id xbindkeys

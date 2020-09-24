@@ -100,7 +100,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap for do codeAction of selected region
@@ -109,6 +108,11 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" snippets
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " ===
 " === Undotree
@@ -362,13 +366,7 @@ nmap ga <Plug>(EasyAlign)
 " == vim-vue
 " ==
 " vue中只高亮存在的文件格式
-let g:vue_pre_processors = ['pug', 'stylus']
-
-" ==
-" == vim-snippets
-" ==
-let g:UltiSnipsSnippetDirectories=["UltiSnips","~/Github/snippets"]
-
+let g:vue_pre_processors = ['pug', 'stylus', 'typescript']
 
 " ==
 " == highlight
@@ -376,3 +374,12 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","~/Github/snippets"]
 " 包括相同单词高亮和颜色高亮
 hi illuminatedWord cterm=underline gui=underline
 let g:Hexokinase_highlighters = ['backgroundfull']
+
+" ==
+" == vim-vue-plugin
+" ==
+let g:vim_vue_plugin_load_full_syntax = 1
+let g:vim_vue_plugin_use_pug = 1
+let g:vim_vue_plugin_use_stylus = 1
+let g:vim_vue_plugin_use_typescript = 1
+let g:vim_vue_plugin_highlight_vue_keyword = 1

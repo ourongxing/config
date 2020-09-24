@@ -72,26 +72,25 @@ Plug 'RRethy/vim-illuminate'
 
 "
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+
 Plug 'jiangmiao/auto-pairs'
 
 " Cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
 
-" vue
-Plug 'posva/vim-vue'
-
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
-Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css','less', 'stylus'] }
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
 Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
 Plug 'jaxbot/browserlink.vim'
-Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug'] }
-Plug 'stephpy/vim-yaml'
+Plug 'stephpy/vim-yaml', { 'for' :['yaml','vim-plug'] }
+Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug', 'vue'] }
+Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus', 'vue'] }
+Plug 'leafOfTree/vim-vue-plugin', { 'for': ['vim-plug', 'vue'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['vim-plug', 'typescript', 'vue'] }
 
 " Go
 Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }

@@ -25,10 +25,7 @@ set autochdir
 set number
 set relativenumber
 set cursorline
-set tabstop=2
 set noshowmode
-set shiftwidth=2
-set softtabstop=2
 set expandtab
 set autoindent
 set autoread
@@ -65,6 +62,14 @@ set wildmode=list:longest
 set termguicolors
 let g:deoplete#enable_at_startup = 1
 
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+autocmd FileType c setlocal et sta sw=4 sts=4
+autocmd FileType cpp setlocal et sta sw=4 sts=4
+autocmd FileType java setlocal et sta sw=4 sts=4
+autocmd FileType python setlocal et sta sw=4 sts=4
+
 " =================================
 " ======== Basic Mappings =========
 " =================================
@@ -95,11 +100,6 @@ noremap <silent> <C-g> :term lazygit<CR>i
 
 " Remove search highlighting
 noremap <silent> <LEADER><CR> :nohlsearch<CR>
-
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
 
 " 保存和加载折叠
 noremap <silent> zs :mkview<CR>
@@ -170,6 +170,10 @@ noremap tx :r !figlet
 
 noremap <F5> :call CompileRunGcc()<CR>
 noremap <silent> <leader>\ :Autoformat<CR>
+let g:formatdef_my_cpp = '"astyle --style=kr"'
+let g:formatdef_my_c = '"astyle --style=kr"'
+let g:formatters_cpp = ['my_cpp']
+let g:formatters_c = ['my_c']
 autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
 
 " Easy indent for code blocks

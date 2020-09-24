@@ -1,5 +1,11 @@
 {
-  "languageserver": {},
+  "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["vim", "eruby", "markdown"]
+    }
+  },
   "translator.engines": ["google"],
   "coc.preferences.extensionUpdateCheck": "daily",
   "suggest.noselect": true,
@@ -43,5 +49,11 @@
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": true,
   "codeLens.enable": true,
-  "coc.preferences.formatOnSaveFiletypes": ["json"]
+  "coc.preferences.formatOnSaveFiletypes": ["json"],
+  "snippets.ultisnips.enable": true,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "~/.vim/plug/vim-snippets/UltiSnips",
+    "~/Github/config/nvim/UlitSnips"
+  ]
 }

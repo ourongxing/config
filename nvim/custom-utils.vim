@@ -19,10 +19,10 @@ func! CompileRunGcc()
         set splitbelow
         :sp
         :res -10
-        :term python3 %
+        :term python %
     elseif &filetype == 'html'
         silent! exec "!reload -p 4444&"
-        silent! exec "!surf 127.0.0.1:4444"
+        silent! exec "!vimb 127.0.0.1:4444"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     elseif &filetype == 'go'
