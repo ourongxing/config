@@ -60,6 +60,7 @@ let g:coc_global_extensions = [
       \ 'coc-tslint-plugin',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
+      \ 'coc-go',
       \ 'coc-vetur',
       \ 'coc-yaml',
       \ 'coc-yank']
@@ -374,6 +375,7 @@ let g:vue_pre_processors = ['pug', 'stylus', 'typescript']
 " 包括相同单词高亮和颜色高亮
 hi illuminatedWord cterm=underline gui=underline
 let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Illuminate_ftblacklist = ['python']
 
 " ==
 " == vim-vue-plugin
@@ -383,3 +385,8 @@ let g:vim_vue_plugin_use_pug = 1
 let g:vim_vue_plugin_use_stylus = 1
 let g:vim_vue_plugin_use_typescript = 1
 let g:vim_vue_plugin_highlight_vue_keyword = 1
+
+" ==
+" == go
+" ==
+let g:go_gopls_enabled = 0

@@ -2,13 +2,14 @@ func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         set splitbelow
-        exec "!gcc % -o %<"
+        silent! exec "!gcc % -o %<"
         :sp
         :res -10
-        :term ./%<
+        :term ./%< 
+        :normal i
     elseif &filetype == 'cpp'
         set splitbelow
-        :!g++ -std=c++11 % -Wall -o %<
+        silent! exec "!g++ -std=c++11 % -Wall -o %<"
         :sp
         :res -10
         :term ./%<
@@ -20,15 +21,18 @@ func! CompileRunGcc()
         :sp
         :res -10
         :term python %
+        :normal i
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :res -10
+        :term go run %
+        :normal i
     elseif &filetype == 'html'
         silent! exec "!reload -p 4444&"
         silent! exec "!vimb 127.0.0.1:4444"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
-    elseif &filetype == 'go'
-        set splitbelow
-        :sp
-        :term go run %
     endif
 endfunc
 

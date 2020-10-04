@@ -243,3 +243,4 @@ bindsym $mod+Shift+Tab workspace prev
 
 exec --no-startup-id fcitx5
 exec --no-startup-id xbindkeys
+exec --no-startup-id bash ./net-login.sh
