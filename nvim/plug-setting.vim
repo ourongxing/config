@@ -51,7 +51,6 @@ let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-prettier',
-      \ 'coc-pyright',
       \ 'coc-python',
       \ 'coc-snippets',
       \ 'coc-stylelint',
@@ -63,6 +62,8 @@ let g:coc_global_extensions = [
       \ 'coc-go',
       \ 'coc-vetur',
       \ 'coc-yaml',
+      \ 'coc-rls',
+      \ 'coc-tailwindcss',
       \ 'coc-yank']
 
 " 相同单词高亮显示
@@ -363,11 +364,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" ==
-" == vim-vue
-" ==
-" vue中只高亮存在的文件格式
-let g:vue_pre_processors = ['pug', 'stylus', 'typescript']
 
 " ==
 " == highlight
@@ -380,12 +376,14 @@ let g:Illuminate_ftblacklist = ['python']
 " ==
 " == vim-vue-plugin
 " ==
-let g:vim_vue_plugin_load_full_syntax = 1
-let g:vim_vue_plugin_use_pug = 1
-let g:vim_vue_plugin_use_stylus = 1
+" let g:vim_vue_plugin_load_full_syntax = 1
 let g:vim_vue_plugin_use_typescript = 1
 let g:vim_vue_plugin_highlight_vue_keyword = 1
 
+" ==
+" == vim-json
+" ==
+let g:vim_json_warnings = 1
 " ==
 " == go
 " ==

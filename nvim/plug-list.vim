@@ -87,13 +87,16 @@ Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascrip
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
 Plug 'jaxbot/browserlink.vim'
 Plug 'stephpy/vim-yaml', { 'for' :['yaml','vim-plug'] }
-Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug', 'vue'] }
-Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus', 'vue'] }
+" Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug', 'vue'] }
+" Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus', 'vue'] }
 Plug 'leafOfTree/vim-vue-plugin', { 'for': ['vim-plug', 'vue'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['vim-plug', 'typescript', 'vue'] }
 
 " Go
 Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+
+" Rust
+Plug 'rust-lang/rust.vim' , { 'for': ['rust', 'vim-plug']}
 
 " Python
 Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }

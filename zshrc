@@ -190,3 +190,5 @@ conda activate python36
 zsh-defer conda_init
 zsh-defer nvm_init
 zsh-defer fzf_init
+
+source /home/ourongxing/.config/broot/launcher/bash/br

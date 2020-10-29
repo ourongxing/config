@@ -222,7 +222,7 @@ hide_edge_borders smart_no_gaps
 
 bindsym Mod1+space exec chromium
 bindsym $mod+u exec picgo
-exec_always --no-startup-id feh --bg-scale ~/Picture/wallpaper/2.jpg
+exec_always --no-startup-id feh --bg-scale --bg-fill ~/Picture/wallpaper/壁纸.jpg
 exec_always --no-startup-id picom -bCG
 exec_always --no-startup-id st
 # exec_always --no-startup-id blueberry

@@ -78,7 +78,7 @@ let g:python_host_prog='~/miniconda3/envs/python27/bin/python'
 let g:python3_host_prog='~/miniconda3/envs/python36/bin/python'
 
 " markdown_preview
-let g:mkdp_browser = 'surf'
+let g:mkdp_browser = 'vimb'
 
 " some functions
 source ~/.config/nvim/custom-utils.vim

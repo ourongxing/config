@@ -19,7 +19,8 @@ autocmd Filetype markdown inoremap <buffer> <silent> ;4 ####<Space><Enter><++><E
 autocmd Filetype markdown inoremap <buffer> <silent> ;t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 autocmd Filetype markdown inoremap <buffer> <silent> ;w {% web  <++> %} <++><Esc>Fb2li
 autocmd Filetype markdown inoremap <buffer> <silent> ;d {% download  <++> %} <++><Esc>Fd2li
-autocmd filetype        c inoremap <buffer> <silent> ;; <Esc>A;<CR>
-autocmd filetype      cpp inoremap <buffer> <silent> ;; <Esc>A;<CR>
+autocmd filetype        c inoremap <buffer> <silent> ;; <Esc>A;
+autocmd filetype     rust inoremap <buffer> <silent> ;; <Esc>A;
+autocmd filetype      cpp inoremap <buffer> <silent> ;; <Esc>A;
 autocmd Filetype     json inoremap <buffer> <silent> ;k %keyword%
 inoremap <buffer> <silent> ;l <Esc>A {}<Esc>i
