@@ -312,7 +312,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-
 let g:ft = ''
 function! NERDCommenter_before()
   if &ft == 'vue'
@@ -330,6 +329,20 @@ function! NERDCommenter_after()
   if g:ft == 'vue'
     setf vue
     let g:ft = ''
+  endif
+endfunction
+
+" Set local options based on subtype
+function! OnChangeVueSubtype(subtype)
+  " echom 'subtype is '.a:subtype
+  if a:subtype == 'html'
+    setlocal commentstring=<!--%s-->
+    setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
+  elseif a:subtype =~ 'css'
+    setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
+  else
+    setlocal commentstring=//%s
+    setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
   endif
 endfunction
 
