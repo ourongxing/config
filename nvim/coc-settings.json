@@ -55,5 +55,6 @@
     "UltiSnips",
     "~/.vim/plug/vim-snippets/UltiSnips",
     "~/Github/config/nvim/UlitSnips"
-  ]
+  ],
+  "tsserver.enableJavascript": false
 }

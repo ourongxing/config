@@ -61,6 +61,7 @@ export PATH="/home/orongxing/miniconda3/envs/python36/bin:$PATH"  # commented ou
 export PATH="/home/orongxing/miniconda3/envs/python27/bin:$PATH"  # commented out by conda initialize
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:/opt/wechat-devtool/bin
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export RANGER_LOAD_DEFAULT_RC="false"

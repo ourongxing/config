@@ -221,6 +221,7 @@ hide_edge_borders smart_no_gaps
 # for_window [window_role="task_dialog"] floating enable
 
 bindsym Mod1+space exec chromium
+bindsym Mod1+shift+space exec firefox
 bindsym $mod+u exec picgo
 exec_always --no-startup-id feh --bg-scale --bg-fill ~/Picture/wallpaper/壁纸.jpg
 exec_always --no-startup-id picom -bCG

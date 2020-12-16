@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/ourongxing/Github/note/计算机网络测试'
 let g:netrw_dirhist_3='/etc'
 let g:netrw_dirhist_2='/etc/modprobe.d'
 let g:netrw_dirhist_1='/etc/grub.d'
