@@ -1,0 +1,16 @@
+# thumb wheel down => lower volume
+"xte 'key XF86AudioLowerVolume'"
+   b:6
+
+# thumb wheel up => increase volume
+"xte 'key XF86AudioRaiseVolume'"
+   b:7
+
+# backward button => mute
+"xte 'key XF86AudioMute'"
+   b:9
+
+# backward button => win+0
+"xte 'keydown Super_L' 'keydown 0' 'keyup Super_L' 'keyup 0'"
+   b:8
+

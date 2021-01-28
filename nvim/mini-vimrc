@@ -1,0 +1,33 @@
+" Set <LEADER> as <SPACE>
+let mapleader=" "
+
+" Remove search highlighting
+noremap <silent> <LEADER><CR> :nohlsearch<CR>
+
+" Press <SPACE> + q to close the window below the current window
+noremap <LEADER>q :q<CR>
+noremap <LEADER>z ZZ
+noremap <LEADER>w :w<CR>
+
+" Clipboard
+noremap <LEADER>y "+y
+noremap <LEADER>p "+p
+
+" inner termidsdl esc
+" tnoremap <Esc> <C-\><C-n>
+
+noremap H ^
+noremap L $
+
+nmap U <C-r>
+
+" Press ` to change case (instead of ~)
+" 快速切换首字母大小写
+" ~的作用就是切换大小写
+noremap ` b~
+
+" Easy indent for code blocks
+nmap <tab>      v>
+nmap <s-tab>    v<
+vmap <tab>      >gv
+vmap <s-tab>    <gv

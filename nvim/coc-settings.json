@@ -6,8 +6,7 @@
       "filetypes": ["vim", "eruby", "markdown"]
     }
   },
-  "translator.engines": ["google"],
-  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.extensionUpdateCheck": "never",
   "suggest.noselect": true,
   "suggest.enablePreselect": false,
   "suggest.completionItemKindLabels": {
@@ -55,6 +54,5 @@
     "UltiSnips",
     "~/.vim/plug/vim-snippets/UltiSnips",
     "~/Github/config/nvim/UlitSnips"
-  ],
-  "tsserver.enableJavascript": false
+  ]
 }

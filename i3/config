@@ -228,7 +228,7 @@ exec_always --no-startup-id picom -bCG
 exec_always --no-startup-id st
 # exec_always --no-startup-id blueberry
 exec_always --no-startup-id libinput-gestures-setup restart
-exec volumeicon
+exec --no-startup-id volumeicon
 exec --no-startup-id v2raya
 exec --no-startup-id xfce4-power-manager
 bindsym --release Print exec flameshot gui
@@ -245,3 +245,4 @@ bindsym $mod+Shift+Tab workspace prev
 exec --no-startup-id fcitx5
 exec --no-startup-id xbindkeys
 exec --no-startup-id bash ./net-login.sh
+workspace $ws10 output eDP-1

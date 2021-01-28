@@ -55,7 +55,6 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-stylelint',
       \ 'coc-syntax',
-      \ 'coc-translator',
       \ 'coc-tslint-plugin',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
@@ -386,18 +385,19 @@ hi illuminatedWord cterm=underline gui=underline
 let g:Hexokinase_highlighters = ['backgroundfull']
 let g:Illuminate_ftblacklist = ['python']
 
-" ==
-" == vim-vue-plugin
-" ==
-" let g:vim_vue_plugin_load_full_syntax = 1
-let g:vim_vue_plugin_use_typescript = 1
-let g:vim_vue_plugin_highlight_vue_keyword = 1
 
 " ==
 " == vim-json
 " ==
 let g:vim_json_warnings = 1
+let g:vim_json_syntax_conceal = 0  " json不省略冒号
+
 " ==
 " == go
 " ==
 let g:go_gopls_enabled = 0
+
+" Javascript
+autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+augroup filetype javascript syntax=javascript

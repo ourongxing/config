@@ -24,6 +24,7 @@ Plug 'mbbill/undotree'
 
 " Auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
+" , {'branch': 'fcitx5'}
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -80,17 +81,13 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css','less', 'stylus'] }
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
-Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
-Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
-Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less', 'stylus'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'html', 'javascript', 'css','less', 'stylus'] }
+Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less', 'stylus'] }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less', 'stylus'] }
 Plug 'jaxbot/browserlink.vim'
 Plug 'stephpy/vim-yaml', { 'for' :['yaml','vim-plug'] }
-" Plug 'digitaltoad/vim-pug', { 'for' :['pug', 'vim-plug', 'vue'] }
-" Plug 'iloginow/vim-stylus', { 'for': ['vim-plug', 'stylus', 'vue'] }
-Plug 'leafOfTree/vim-vue-plugin', { 'for': ['vim-plug', 'vue'] }
-Plug 'leafgarland/typescript-vim', { 'for': ['vim-plug', 'typescript', 'vue'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['vim-plug', 'typescript'] }
+Plug 'posva/vim-vue', { 'for' :['vue','vim-plug'] }
 
 " Go
 Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }

@@ -75,7 +75,9 @@ export SHELL=zsh
 # =====
 # ===== Alias
 # =====
-
+alias py36='conda activate python36'
+alias py27='conda activate python27'
+alias py37='conda activate python37'
 alias note='vim ~/.note.md'
 alias jn='jupyter notebook --ip=0.0.0.0 --allow-root'
 alias ll="exa -l"
@@ -85,10 +87,10 @@ alias sudo='sudo -E '
 alias c='clear'
 alias s='neofetch'
 alias sound='alsamixer'
-alias bat='tlp bat'
-alias ac='tlp ac'
+alias bat='sudo tlp bat'
+alias ac='sudo tlp ac'
 alias lg='lazygit'
-alias hexod="bash ~/orxing-blog/hexo-deploy.sh"
+alias daka='cd ~/Development/Elecron/electron-react-antd-antv-cli/ && yarn ele:dev'
 alias fmax="find ./ -type f -print0 | xargs -0 du -h | sort -rh | head -n 10"
 # don't use rm
 alias tp='trash-put'           # trash files and directories.
@@ -103,6 +105,7 @@ alias proxy='export ALL_PROXY=socks5://127.0.0.1:1080'
 # =====
 # ===== User configuration
 # =====
+source ~/.zsh-defer/zsh-defer.plugin.zsh
 
 # Vi-Mode
 function zle-keymap-select {
@@ -142,7 +145,7 @@ ranger () {
     local ranger_cmd=(
         command
         ranger
-        --cmd="map q chain shell echo %d > "$tempfile"; quitall"
+        --cmd="map q chain shell echo %d > "$tempfile"; quitall!"
     )
     
     ${ranger_cmd[@]} "$@"
@@ -152,9 +155,6 @@ ranger () {
     command rm -f -- "$tempfile" 2>/dev/null
 }
 
-# Thefuck
-eval $(thefuck --alias)
-source ~/.zsh-defer/zsh-defer.plugin.zsh
 
 # NVM
 nvm_init () {
@@ -193,3 +193,7 @@ zsh-defer nvm_init
 zsh-defer fzf_init
 
 source /home/ourongxing/.config/broot/launcher/bash/br
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /home/ourongxing/Development/Elecron/electron-upload/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/ourongxing/Development/Elecron/electron-upload/node_modules/tabtab/.completions/electron-forge.zsh
