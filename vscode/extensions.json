@@ -1,0 +1,52 @@
+[
+  {
+    "metadata": {
+      "id": "987b0426-36e9-496b-9bac-70e51d838a9c",
+      "publisherId": "lizebang.setting-backup",
+      "publisherDisplayName": "lizebang"
+    },
+    "name": "setting-backup",
+    "publisher": "lizebang",
+    "version": "0.1.4"
+  },
+  {
+    "metadata": {
+      "id": "e4ee7751-6514-4731-9cdb-7580ffa9e70b",
+      "publisherId": "MS-CEINTL.vscode-language-pack-zh-hans",
+      "publisherDisplayName": "MS-CEINTL"
+    },
+    "name": "vscode-language-pack-zh-hans",
+    "publisher": "MS-CEINTL",
+    "version": "1.52.2"
+  },
+  {
+    "metadata": {
+      "id": "121396ad-85a1-45ec-9fd1-d95028a847f5",
+      "publisherId": "naumovs.color-highlight",
+      "publisherDisplayName": "naumovs"
+    },
+    "name": "color-highlight",
+    "publisher": "naumovs",
+    "version": "2.3.0"
+  },
+  {
+    "metadata": {
+      "id": "5db78037-f674-459f-a236-db622c427c5b",
+      "publisherId": "PKief.material-icon-theme",
+      "publisherDisplayName": "PKief"
+    },
+    "name": "material-icon-theme",
+    "publisher": "PKief",
+    "version": "4.5.0"
+  },
+  {
+    "metadata": {
+      "id": "d96e79c6-8b25-4be3-8545-0e0ecefcae03",
+      "publisherId": "vscodevim.vim",
+      "publisherDisplayName": "vscodevim"
+    },
+    "name": "vim",
+    "publisher": "vscodevim",
+    "version": "1.18.5"
+  }
+]

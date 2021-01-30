@@ -1,0 +1,108 @@
+{
+    "files.autoSave": "onWindowChange",
+    "editor.fontSize": 15,
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.ignoreMissingGitWarning": true,
+    "editor.fontFamily": "SauceCodePro Nerd Font",
+    "editor.fontLigatures": true,
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.inheritEnv": false,
+    "explorer.confirmDragAndDrop": false,
+    "files.autoGuessEncoding": true,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+
+    // vim
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
+    "editor.lineNumbers": "relative",
+    "vim.insertModeKeyBindings": [
+        // {
+        // "before": ["j", "j"],
+        // "after": ["<Esc>"]
+        // }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // {
+        // "before": ["<leader>", "d"],
+        // "after": ["d", "d"]
+        // },
+        // {
+        // "before": ["<leader>","w"],
+        // "commands": [":w"]
+        // },
+        {
+            "before": ["<leader>","enter"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["g", "c", "c"],
+            "commands": ["<C-/>"]
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-b>": false,
+        "<C-j>": false,
+        "<C-m>": false,
+        "<C-n>": false,
+    },
+    "vim.history": 100,
+    "vim.debug.silent": true,
+    "vim.highlightedyank.color": "#478fda",
+    "vim.highlightedyank.enable": true,
+    "vim.statusBarColorControl": true,
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#005f5f",
+      "statusBar.noFolderBackground": "#005f5f",
+      "statusBar.debuggingBackground": "#005f5f"
+    },
+    "vim.searchHighlightColor": "#478fda",
+    "vim.searchHighlightTextColor": "#fff",
+    "vim.mouseSelectionGoesIntoVisualMode": false,
+    "vim.highlightedyank.textColor": "#fff",
+    "vim.vimrc.enable": true,
+    "vim.foldfix": true,
+    "vim.autoSwitchInputMethod.enable": true,
+
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "files.trimFinalNewlines": true,
+    "screencastMode.onlyKeyboardShortcuts": true,
+    "files.defaultLanguage": "markdown",
+    "window.menuBarVisibility": "toggle",
+    "editor.mouseWheelZoom": true,
+    "editor.formatOnPaste": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "markdown.preview.fontSize": 15,
+    "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+    "markdown-preview-enhanced.enableHTML5Embed": true,
+    "editor.suggestSelection": "first",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "update.showReleaseNotes": false,
+    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sO2VyO2JwbW47Zmxvd2NoYXJ0O2Jhc2ljO2Fycm93czJcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltcIjY1NkU2OFwiXSxcImZvcm1hdFdpZHRoXCI6XCIyNDBcIixcImNyZWF0ZVRhcmdldFwiOmZhbHNlLFwicGFnZUZvcm1hdFwiOntcInhcIjowLFwieVwiOjAsXCJ3aWR0aFwiOjgyNyxcImhlaWdodFwiOjExNjl9LFwic2VhcmNoXCI6dHJ1ZSxcInNob3dTdGFydFNjcmVlblwiOnRydWUsXCJncmlkQ29sb3JcIjpcIiNkMGQwZDBcIixcImRhcmtHcmlkQ29sb3JcIjpcIiM2NTZFNjhcIixcImF1dG9zYXZlXCI6dHJ1ZSxcInJlc2l6ZUltYWdlc1wiOm51bGwsXCJvcGVuQ291bnRlclwiOjAsXCJ2ZXJzaW9uXCI6MTgsXCJ1bml0XCI6MSxcImlzUnVsZXJPblwiOmZhbHNlLFwidWlcIjpcIlwifSJ9",
+    "markdown.preview.doubleClickToSwitchToEditor": false,
+    "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": false,
+    "editor.detectIndentation": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": true,
+    "Navigate forward": false,
+    "Navigate back": false,
+    "Beautify active file": false,
+    "workbench.activityBar.visible": true,
+    "Open files list": false,
+    "editor.renderWhitespace": "none",
+    "sync.autoUpload": false,
+    "sync.autoDownload": false,
+    "sync.gist": "",
+    "setting-backup.path": "/home/ourongxing/Github/config/",
+}
