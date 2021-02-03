@@ -40,7 +40,7 @@ set wrap "自动换行
 " set linebreak "整字换行
 set tw=0 
 set indentexpr=
-set foldmethod=manual
+set foldmethod=indent
 set foldlevel=99
 set foldenable
 set formatoptions-=tc

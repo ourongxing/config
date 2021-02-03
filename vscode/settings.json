@@ -101,8 +101,4 @@
     "workbench.activityBar.visible": true,
     "Open files list": false,
     "editor.renderWhitespace": "none",
-    "sync.autoUpload": false,
-    "sync.autoDownload": false,
-    "sync.gist": "",
-    "setting-backup.path": "/home/ourongxing/Github/config/",
 }
