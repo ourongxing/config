@@ -47,8 +47,7 @@ func! CompileRunGcc()
         :term cargo run
         " :normal i
     elseif &filetype == 'html'
-        silent! exec "!reload -p 4444&"
-        " silent! exec "!vimb 127.0.0.1:4444"
+        silent! exec "!reload -b vimb -p 4444&"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     endif

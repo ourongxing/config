@@ -8,12 +8,15 @@ Plug 'mengelbrecht/lightline-bufferline'
 
 " Tpope is so powerful
 " ======================
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 " =======================
 
+" git commit
+Plug 'zivyangll/git-blame.vim'
+Plug 'puremourning/vimspector'
 Plug 'preservim/nerdcommenter'
 
 Plug 'mg979/scroll.vim'
@@ -24,12 +27,11 @@ Plug 'mbbill/undotree'
 
 " Auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
-" , {'branch': 'fcitx5'}
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Vim tartup screen
+" Vim startup screen
 Plug 'mhinz/vim-startify'
 
 " FZF

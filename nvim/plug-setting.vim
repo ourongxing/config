@@ -1,6 +1,7 @@
 " ===
 " === FZF
 " ===
+
 " 查找文件
 nmap <C-s> :FZF<CR>
 " 查找文件内容
@@ -393,7 +394,7 @@ let g:vim_json_warnings = 1
 let g:vim_json_syntax_conceal = 0  " json不省略冒号
 
 " ==
-" == go
+" == vim-go
 " ==
 let g:go_gopls_enabled = 0
 
@@ -401,3 +402,39 @@ let g:go_gopls_enabled = 0
 autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
 augroup filetype javascript syntax=javascript
+
+" ==
+" == vimspector
+" ==
+let g:vimspector_enable_mappings = 'HUMAN'
+function! s:read_template_into_buffer(template)
+    " has to be a function to avoid the extra space fzf#run insers otherwise
+    execute '0r ~/.config/nvim/vimspector_json/'.a:template
+endfunction
+command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+            \   'source': 'ls -1 ~/.config/nvim/vimspector_json',
+            \   'down': 20,
+            \   'sink': function('<sid>read_template_into_buffer')
+            \ })
+noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+sign define vimspectorBP         text=\ ● texthl=WarningMsg
+sign define vimspectorBPCond     text=\ ◆ texthl=WarningMsg
+sign define vimspectorBPDisabled text=\ ● texthl=LineNr
+sign define vimspectorPC         text=\ ▶ texthl=MatchParen linehl=CursorLine
+sign define vimspectorPCBP       text=●▶  texthl=MatchParen linehl=CursorLine
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         999,
+  \    'vimspectorBPCond':     998,
+  \    'vimspectorBPDisabled': 997,
+  \    'vimspectorPC':         1999,
+  \    'vimspectorPCBP':       1999,
+  \ }
+
+" ==
+" == gitblame
+" ==
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+
+" ==
+" == semshi
+" ==

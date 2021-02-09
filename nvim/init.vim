@@ -168,12 +168,13 @@ noremap crv <C-w>b<C-w>H
 " figlet
 noremap tx :r !figlet
 
-noremap <F5> :call CompileRunGcc()<CR>
+noremap <leader><F5> :call CompileRunGcc()<CR>
 noremap <silent> <leader>\ :Autoformat<CR>
 let g:formatdef_my_cpp = '"astyle --style=kr"'
 let g:formatdef_my_c = '"astyle --style=kr"'
 let g:formatters_cpp = ['my_cpp']
 let g:formatters_c = ['my_c']
+
 autocmd Filetype markdown noremap <buffer> <silent> <leader>\ :call PanGuSpacing()<CR>
 
 " Easy indent for code blocks
