@@ -15,7 +15,7 @@ fi
 
 source "$HOME/.zinit/bin/zinit.zsh"
 
-# powerlevel10k 
+# powerlevel10k
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
@@ -45,15 +45,15 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 
 # 解压缩
-zinit ice svn lucid wait='1' 
+zinit ice svn lucid wait='1'
 zinit snippet OMZ::plugins/extract
 
 # git
-zinit ice lucid wait='1' 
+zinit ice lucid wait='1'
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # =====
-# ===== Export 
+# ===== Export
 # =====
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -72,34 +72,39 @@ export EDITOR=nvim
 export TERMINAL=st
 export SHELL=zsh
 
+export GOPROXY=https://goproxy.cn
 # =====
 # ===== Alias
 # =====
 alias py36='conda activate python36'
 alias py27='conda activate python27'
 alias py37='conda activate python37'
+alias lanzou_dict='bash ~/Desktop/lanzou_up.sh 3336445'
+alias lanzou='bash ~/Desktop/lanzou_up.sh 3351784'
 alias note='vim ~/.note.md'
 alias jn='jupyter notebook --ip=0.0.0.0 --allow-root'
+alias cqupt='bash ~/10-login.sh'
+alias df='python ./Github/Dongfang-Rebate-Notify/index.py orongxing@gmail.com Tender01Gredark 3AD95A969BCB9 50'
 alias ll="exa -l"
 alias vim='nvim'
 alias ra='ranger'
 alias sudo='sudo -E '
 alias c='clear'
+alias clashup='bash /home/ourongxing/.config/clash/update.sh'
 alias s='neofetch'
 alias sound='alsamixer'
-alias bat='sudo tlp bat'
-alias ac='sudo tlp ac'
+alias tbat='sudo tlp bat'
+alias tac='sudo tlp ac'
 alias lg='lazygit'
-alias daka='cd ~/Development/Elecron/electron-react-antd-antv-cli/ && yarn ele:dev'
 alias fmax="find ./ -type f -print0 | xargs -0 du -h | sort -rh | head -n 10"
 # don't use rm
 alias tp='trash-put'           # trash files and directories.
 alias te='trash-empty'         # empty the trashcan(s).
 alias tl='trash-list'          # list trashed files.
-alias tr='trash-restore'       # restore a trashed file.
-# trash-rm            # remove individual files from the trashcan.
+alias tre='trash-restore'       # restore a trashed file.
+alias trm='trash-rm'           # remove individual files from the trashcan.
 alias q='exit'
-alias proxy='export ALL_PROXY=socks5://127.0.0.1:1080'
+alias pc='proxychains'
 
 
 # =====
@@ -109,18 +114,18 @@ source ~/.zsh-defer/zsh-defer.plugin.zsh
 
 # Vi-Mode
 function zle-keymap-select {
-	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-		echo -ne '\e[1 q'
-	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
-		echo -ne '\e[5 q'
+  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
   fi
 }
 zle -N zle-keymap-select
 preexec() {
-	echo -ne '\e[5 q'
+  echo -ne '\e[5 q'
 }
 _fix_cursor() {
-	echo -ne '\e[5 q'
+  echo -ne '\e[5 q'
 }
 precmd_functions+=(_fix_cursor)
 zle -N zle-line-init
@@ -128,60 +133,69 @@ zle -N zle-keymap-select
 
 # FZF
 fzf_init() {
-    export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
-    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-    export FZF_COMPLETION_TRIGGER='\'
-    export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --color=always --style=numbers --line-range=:500 {} || ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+  export FZF_DEFAULT_COMMAND='ag --hidden --depth 5 --ignore .git -g ""'
+  export FZF_COMPLETION_TRIGGER='\'
+  export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --color=always --style=numbers --line-range=:500 {} || ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+  _fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+  }
+
+  # Use fd to generate the list for directory completion
+  _fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
+  }
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
+
 
 zsh_stats () {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
 }
 
+# ranger 退出到当前文件夹
 ranger () {
-    local IFS=$'\t\n'
-    local tempfile="$(mktemp -t tmp.XXXXXX)"
-    local ranger_cmd=(
-        command
-        ranger
-        --cmd="map q chain shell echo %d > "$tempfile"; quitall!"
-    )
-    
-    ${ranger_cmd[@]} "$@"
-    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-        cd -- "$(cat "$tempfile")" || return
-    fi
-    command rm -f -- "$tempfile" 2>/dev/null
+  local IFS=$'\t\n'
+  local tempfile="$(mktemp -t tmp.XXXXXX)"
+  local ranger_cmd=(
+  command
+  ranger
+  --cmd="map q chain shell echo %d > "$tempfile"; quitall!"
+)
+${ranger_cmd[@]} "$@"
+if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+  cd -- "$(cat "$tempfile")" || return
+fi
+command rm -f -- "$tempfile" 2>/dev/null
 }
 
 
 # NVM
 nvm_init () {
-    export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-    export NVM_DIR="$HOME/.nvm"
-    # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-    export PATH=$HOME/.nvm/versions/node/v12.18.0/bin/:$PATH
+  export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+  export NVM_DIR="$HOME/.nvm"
+  # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
+  export PATH=$HOME/.nvm/versions/node/v12.18.0/bin/:$PATH
 }
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 conda_init () {
-__conda_setup="$('/home/ourongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
+  __conda_setup="$('/home/ourongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-else
+  else
     if [ -f "/home/ourongxing/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ourongxing/miniconda3/etc/profile.d/conda.sh"
+      . "/home/ourongxing/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/ourongxing/miniconda3/bin:$PATH"
+      export PATH="/home/ourongxing/miniconda3/bin:$PATH"
     fi
-fi
-unset __conda_setup
-conda activate python36
-# <<< conda initialize <<<
+  fi
+  unset __conda_setup
+  conda activate python36
+  # <<< conda initialize <<<
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -193,7 +207,3 @@ zsh-defer nvm_init
 zsh-defer fzf_init
 
 source /home/ourongxing/.config/broot/launcher/bash/br
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /home/ourongxing/Development/Elecron/electron-upload/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/ourongxing/Development/Elecron/electron-upload/node_modules/tabtab/.completions/electron-forge.zsh

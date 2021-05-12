@@ -60,15 +60,20 @@ set visualbell
 set updatetime=100
 set wildmode=list:longest
 set termguicolors
-let g:deoplete#enable_at_startup = 1
-
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set undofile               
+set undodir=/home/ourongxing/.cache/vim/undo
 autocmd FileType c setlocal et sta sw=4 sts=4
 autocmd FileType cpp setlocal et sta sw=4 sts=4
 autocmd FileType java setlocal et sta sw=4 sts=4
 autocmd FileType python setlocal et sta sw=4 sts=4
+" autocmd! bufwritepost $MYVIMRC source %
+filetype plugin indent on " 为特定文件类型载入相关缩进文件
+filetype on " 载入文件类型插件
+let g:deoplete#enable_at_startup = 1
+
 
 " =================================
 " ======== Basic Mappings =========
@@ -166,9 +171,9 @@ noremap crh <C-w>b<C-w>K
 noremap crv <C-w>b<C-w>H
 
 " figlet
-noremap tx :r !figlet
+noremap tx :r !figlet 
 
-noremap <leader><F5> :call CompileRunGcc()<CR>
+noremap <F29> :call CompileRunGcc()<CR>
 noremap <silent> <leader>\ :Autoformat<CR>
 let g:formatdef_my_cpp = '"astyle --style=kr"'
 let g:formatdef_my_c = '"astyle --style=kr"'

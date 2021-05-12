@@ -2,11 +2,11 @@ from ranger.api.commands import Command
 import os
 from ranger.core.loader import CommandLoader
 class paste_as_root(Command):
-	def execute(self):
-		if self.fm.do_cut:
-			self.fm.execute_console('shell sudo mv %c .')
-		else:
-			self.fm.execute_console('shell sudo cp -r %c .')
+    def execute(self):
+        if self.fm.do_cut:
+            self.fm.execute_console('shell sudo mv %c .')
+        else:
+            self.fm.execute_console('shell sudo cp -r %c .')
 
 
 class mkcd(Command):
@@ -93,7 +93,7 @@ class compress(Command):
 
         descr = "compressing files in: " + os.path.basename(parts[1])
         obj = CommandLoader(args=['apack'] + au_flags + \
-                [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr, read=True)
+                            [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr, read=True)
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
@@ -130,7 +130,7 @@ class extracthere(Command):
         else:
             descr = "extracting files from: " + os.path.basename(one_file.dirname)
         obj = CommandLoader(args=['aunpack'] + au_flags \
-                + [f.path for f in copied_files], descr=descr, read=True)
+                            + [f.path for f in copied_files], descr=descr, read=True)
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)

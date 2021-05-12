@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/etc/pacman.d'
+let g:netrw_dirhist_8='/etc/NetworkManager/dispatcher.d'
+let g:netrw_dirhist_7='/home/ourongxing/Github/maimemo-export/dict'
+let g:netrw_dirhist_6='/etc'
 let g:netrw_dirhist_5='/home/ourongxing/.zinit/completions'
 let g:netrw_dirhist_4='/home/ourongxing/Github/note/计算机网络测试'
 let g:netrw_dirhist_3='/etc'

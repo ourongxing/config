@@ -2,18 +2,14 @@ func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         set splitbelow
-        exec "!gcc % -o %<"
+        silent exec "!gcc % -o ./.tmp"
         :sp
-        :res -10
-        :term ./%< && rm ./%< 
-        " :normal i
+        :term ./.tmp && rm ./.tmp 
     elseif &filetype == 'cpp'
         set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<"
+        silent exec "!g++ -std=c++11 % -Wall -o ./.tmp"
         :sp
-        :res -10
-        :term ./%< && rm ./%<
-        " :normal i
+        :term ./.tmp && rm ./.tmp 
     elseif &filetype == 'sh'
         :!time bash %
     elseif &filetype == 'python'
@@ -21,33 +17,28 @@ func! CompileRunGcc()
         :sp
         :res -10
         :term python %
-        " :normal i
     elseif &filetype == 'javascript'
         set splitbelow
         :sp
         :res -10
         :term node %
-        " :normal i
     elseif &filetype == 'typescript'
         set splitbelow
         :sp
         :res -10
         :term node %<.js
-        " :normal i
     elseif &filetype == 'go'
         set splitbelow
         :sp
         :res -10
         :term go run %
-        " :normal i
     elseif &filetype == 'rust'
         set splitbelow
         :sp
         :res -5
         :term cargo run
-        " :normal i
     elseif &filetype == 'html'
-        silent! exec "!reload -b vimb -p 4444&"
+        silent exec "!reload -b vimb -p 4444&"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     endif

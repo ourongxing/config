@@ -21,6 +21,3 @@ autocmd filetype        c inoremap <buffer> <silent> ;; <Esc>A;
 autocmd filetype     rust inoremap <buffer> <silent> ;; <Esc>A;
 autocmd filetype      cpp inoremap <buffer> <silent> ;; <Esc>A;
 autocmd Filetype     json inoremap <buffer> <silent> ;k %keyword%
-inoremap <buffer> <silent> ;l <Esc>A {}<Esc>i
-
-

@@ -220,16 +220,18 @@ hide_edge_borders smart_no_gaps
 # for_window [window_role="pop-up"] floating enable
 # for_window [window_role="task_dialog"] floating enable
 
-bindsym Mod1+space exec chromium
+bindsym Mod1+space exec google-chrome-stable
 bindsym Mod1+shift+space exec firefox
 bindsym $mod+u exec picgo
 exec_always --no-startup-id feh --bg-scale --bg-fill ~/Picture/wallpaper/壁纸.jpg
 exec_always --no-startup-id picom -bCG
 exec_always --no-startup-id st
+exec_always --no-startup-id copyq
 # exec_always --no-startup-id blueberry
 exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id volumeicon
-exec --no-startup-id v2raya
+exec --no-startup-id clashy
+# exec --no-startup-id ~/Github/login4cqupt/login.sh
 exec --no-startup-id xfce4-power-manager
 bindsym --release Print exec flameshot gui
 # 窗口焦点跟随鼠标移动
@@ -244,13 +246,13 @@ bindsym $mod+Shift+Tab workspace prev
 
 exec --no-startup-id fcitx5
 exec --no-startup-id xbindkeys
-workspace $ws10 output eDP-1
-workspace $ws1 output DP-1
-workspace $ws2 output DP-1
-workspace $ws3 output DP-1
-workspace $ws4 output DP-1
-workspace $ws5 output DP-1
-workspace $ws6 output DP-1
-workspace $ws7 output DP-1
-workspace $ws8 output DP-1
-workspace $ws9 output DP-1
+# workspace $ws10 output eDP-1
+# workspace $ws1 output DP-1
+# workspace $ws2 output DP-1
+# workspace $ws3 output DP-1
+# workspace $ws4 output DP-1
+# workspace $ws5 output DP-1
+# workspace $ws6 output DP-1
+# workspace $ws7 output DP-1
+# workspace $ws8 output DP-1
+# workspace $ws9 output DP-1

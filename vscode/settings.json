@@ -9,7 +9,6 @@
     "git.ignoreMissingGitWarning": true,
     "editor.fontFamily": "SauceCodePro Nerd Font",
     "editor.fontLigatures": true,
-    "window.zoomLevel": 0,
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.inheritEnv": false,
     "explorer.confirmDragAndDrop": false,
@@ -35,17 +34,17 @@
         // "after": ["d", "d"]
         // },
         // {
-        // "before": ["<leader>","w"],
-        // "commands": [":w"]
+        // "before": ["<leader>","\\"],
+        // "commands": ["C"]
         // },
         {
             "before": ["<leader>","enter"],
             "commands": [":nohl"]
         },
-        {
-            "before": ["g", "c", "c"],
-            "commands": ["<C-/>"]
-        }
+        // {
+        //     "before": ["g", "c", "c"],
+        //     "commands": ["<C-/>"]
+        // }
     ],
     "vim.handleKeys": {
         "<C-b>": false,
@@ -70,7 +69,6 @@
     "vim.vimrc.enable": true,
     "vim.foldfix": true,
     "vim.autoSwitchInputMethod.enable": true,
-
     "editor.suggest.localityBonus": true,
     "editor.suggest.shareSuggestSelections": true,
     "files.trimFinalNewlines": true,
@@ -101,4 +99,11 @@
     "workbench.activityBar.visible": true,
     "Open files list": false,
     "editor.renderWhitespace": "none",
+    "dorajs.autoPush": true,
+    "dorajs.host": "192.168.43.9",
+    "[javascript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.tabCompletion": "on",
+    "window.zoomLevel": 1,
 }

@@ -36,23 +36,32 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  "diagnostic.signOffset": 1,
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
   "diagnostic.hintSign": "\uf864",
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": false,
-  "diagnostic.refreshAfterSave": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": true,
   "codeLens.enable": true,
   "coc.preferences.formatOnSaveFiletypes": ["json"],
   "snippets.ultisnips.enable": true,
+  "snippets.snipmate.enable": false,
   "snippets.ultisnips.directories": [
-    "UltiSnips",
-    "~/.vim/plug/vim-snippets/UltiSnips",
-    "~/Github/config/nvim/UlitSnips"
-  ]
+    "/home/ourongxing/Github/config/nvim/UltiSnips"
+  ],
+  "snippets.extends": {
+    "javascriptreact": ["javascript", "javascript_react"],
+    "typescriptreact": [
+      "javascript",
+      "javascript_react",
+      "javascript-jasmine-arrow"
+    ],
+    "typescript": ["javascript", "javascript-jasmine-arrow"]
+  },
+  "javascript.suggestionActions.enabled": false,
+  "python.condaPath": "~/miniconda3",
+  "python.pythonPath": "/home/ourongxing/miniconda3/envs/python36/bin/python"
 }

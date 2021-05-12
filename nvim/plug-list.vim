@@ -16,14 +16,15 @@ Plug 'tpope/vim-speeddating'
 
 " git commit
 Plug 'zivyangll/git-blame.vim'
+
+" 调试
 Plug 'puremourning/vimspector'
+" 注释
 Plug 'preservim/nerdcommenter'
-
+" 平滑滚动
 Plug 'mg979/scroll.vim'
+" 多光标
 Plug 'mg979/vim-visual-multi'
-
-" Code change tree
-Plug 'mbbill/undotree'
 
 " Auto toggle fcitx
 Plug 'lilydjwg/fcitx.vim'
@@ -45,26 +46,15 @@ Plug 'rbgrouleff/bclose.vim'
 " Auto to format
 Plug 'Chiel92/vim-autoformat'
 
-" 
-Plug 'junegunn/vim-easy-align'
-
-"
-Plug 'jwarby/antovim'
-
 " Git
-" Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
-Plug 'cohama/agit.vim'
 "
 " Rainbow bracket
 Plug 'luochen1990/rainbow'
 
 " Remember last edit
 Plug 'farmergreg/vim-lastplace'
-
-" Chinese vimdoc
-Plug 'yianwillis/vimcdoc'
 
 " EasyMOtion
 Plug 'Lokaltog/vim-easymotion'
@@ -73,9 +63,8 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
 
-"
 Plug 'honza/vim-snippets'
-
+" 匹配括号
 Plug 'jiangmiao/auto-pairs'
 
 " Cpp
@@ -83,13 +72,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'html', 'javascript', 'css','less', 'stylus'] }
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less', 'stylus'] }
-Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less', 'stylus'] }
-Plug 'jaxbot/browserlink.vim'
 Plug 'stephpy/vim-yaml', { 'for' :['yaml','vim-plug'] }
+Plug 'hail2u/vim-css3-syntax',   { 'for': ['vim-plug', 'html', 'javascript', 'css','less', 'stylus'] }
+Plug 'pangloss/vim-javascript',  { 'for': ['vim-plug', 'html', 'javascript'] }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'html', 'javascript'] }
+Plug 'jaxbot/browserlink.vim'
 Plug 'leafgarland/typescript-vim', { 'for': ['vim-plug', 'typescript'] }
-Plug 'posva/vim-vue', { 'for' :['vue','vim-plug'] }
 
 " Go
 Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
@@ -108,5 +96,8 @@ Plug 'cjrh/vim-conda', { 'for' :['python', 'vim-plug'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for' :['markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
+
+" csv
+" Plug 'chrisbra/csv.vim'
 
 call plug#end()

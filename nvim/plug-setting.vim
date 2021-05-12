@@ -51,55 +51,52 @@ let g:coc_global_extensions = [
       \ 'coc-gitignore',
       \ 'coc-html',
       \ 'coc-json',
-      \ 'coc-prettier',
       \ 'coc-python',
       \ 'coc-snippets',
       \ 'coc-stylelint',
       \ 'coc-syntax',
-      \ 'coc-tslint-plugin',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
       \ 'coc-go',
-      \ 'coc-vetur',
+      \ 'coc-emmet',
       \ 'coc-yaml',
-      \ 'coc-rls',
-      \ 'coc-tailwindcss',
-      \ 'coc-yank']
+      \ 'coc-rls']
 
 " 相同单词高亮显示
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" UltiSnips 插件提前绑定了tab
-let g:UltiSnipsExpandTrigger = '<f5>'
+" 查询按键绑定 verbose map <key>
+ 
 
-inoremap <silent><expr> <tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<tab>" :
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+let g:coc_snippet_next = '<tab>'
 
-inoremap <silent><expr> <c-o> coc#refresh()
+" tab 键选中
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" pumvisible() 表示有代码提示的时候
+inoremap <expr><C-K> pumvisible() ? "\<C-p>" : "\<up>"
+inoremap <expr><C-J> pumvisible() ? "\<C-n>" : "\<down>"
+inoremap <expr><C-H> pumvisible() ? "\<Esc>" : "\<left>"
+inoremap <expr><C-L> pumvisible() ? (complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>") : "<right>"
+
+" inoremap <silent><expr> <c-o> coc#refresh()
 nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
 nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
 nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
 nnoremap <c-c> :CocCommand<CR>
 
-" coc-translator
-nmap ts <Plug>(coc-translator-p)
-vmap ts <Plug>(coc-translator-pv)
-" replace
-nmap tr <Plug>(coc-translator-r)
-vmap tr <Plug>(coc-translator-rv)
-
 " 变量重命名
 nmap <leader>rn <Plug>(coc-rename)
-
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -110,32 +107,6 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
-" snippets
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" ===
-" === Undotree
-" ===
-noremap ty :UndotreeToggle<CR>
-let g:undotree_DiffAutoOpen = 1
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_ShortIndicators = 1
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffpanelHeight = 8
-let g:undotree_SplitWidth = 24
-function g:Undotree_CustomMap()
-  nmap <buffer> k <plug>UndotreeNextState
-  nmap <buffer> j <plug>UndotreePreviousState
-  nmap <buffer> K 5<plug>UndotreeNextState
-  nmap <buffer> J 5<plug>UndotreePreviousState
-endfunc
-if has("persistent_undo")
-  set undodir=$HOME/.cache/vim/undo
-  set undofile
-endif
 
 " ===
 " === Ranger.vim
@@ -208,7 +179,6 @@ endfunction
 
 " 低于两个buffer时不显示
 let g:lightline#bufferline#min_buffer_count = 2
-
 let g:lightline#bufferline#show_number  = 2
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#enable_devicons = 1
@@ -312,26 +282,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-
 " Set local options based on subtype
 function! OnChangeVueSubtype(subtype)
   " echom 'subtype is '.a:subtype
@@ -368,14 +318,6 @@ nmap <silent> zt <Plug>scroll_top
 " let g:VM_maps['Find Operator']      = ""
 " let g:VM_maps['Find Under']         = 'M'
 " let g:VM_maps['Find Subword Under'] = 'M'
-"
-" ==
-" == Easy Align
-" ==
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 
 " ==
@@ -436,5 +378,7 @@ let g:vimspector_sign_priority = {
 nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
 " ==
-" == semshi
+" == autopair
 " ==
+let g:AutoPairsMapCh = 0 "关闭<c-h>的默认的默认映射
+" let g:AutoPairsMapBS = 0 "关闭删除键自动删除成对的符号
