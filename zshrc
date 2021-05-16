@@ -66,13 +66,11 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export RANGER_LOAD_DEFAULT_RC="false"
 export DOWNGRADE_FROM_ALA=1
-
-# ranger 环境变量
 export EDITOR=nvim
 export TERMINAL=st
 export SHELL=zsh
-
 export GOPROXY=https://goproxy.cn
+
 # =====
 # ===== Alias
 # =====
@@ -83,13 +81,11 @@ alias lanzou_dict='bash ~/Desktop/lanzou_up.sh 3336445'
 alias lanzou='bash ~/Desktop/lanzou_up.sh 3351784'
 alias note='vim ~/.note.md'
 alias jn='jupyter notebook --ip=0.0.0.0 --allow-root'
-alias cqupt='bash ~/10-login.sh'
-alias df='python ./Github/Dongfang-Rebate-Notify/index.py orongxing@gmail.com Tender01Gredark 3AD95A969BCB9 50'
+alias cqupt='bash ~/Desktop/10-login.sh'
 alias ll="exa -l"
 alias vim='nvim'
 alias ra='ranger'
 alias sudo='sudo -E '
-alias c='clear'
 alias clashup='bash /home/ourongxing/.config/clash/update.sh'
 alias s='neofetch'
 alias sound='alsamixer'
@@ -104,7 +100,8 @@ alias tl='trash-list'          # list trashed files.
 alias tre='trash-restore'       # restore a trashed file.
 alias trm='trash-rm'           # remove individual files from the trashcan.
 alias q='exit'
-alias pc='proxychains'
+alias c='clear'
+alias pc='proxychains -q'
 
 
 # =====
@@ -113,39 +110,40 @@ alias pc='proxychains'
 source ~/.zsh-defer/zsh-defer.plugin.zsh
 
 # Vi-Mode
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+vimode_init() {
+  function zle-keymap-select {
+    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+      echo -ne '\e[1 q'
+    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+      echo -ne '\e[5 q'
+    fi
+  }
+  zle -N zle-keymap-select
+  preexec() {
     echo -ne '\e[5 q'
-  fi
+  }
+  _fix_cursor() {
+    echo -ne '\e[5 q'
+  }
+  precmd_functions+=(_fix_cursor)
+  zle -N zle-line-init
+  zle -N zle-keymap-select
 }
-zle -N zle-keymap-select
-preexec() {
-  echo -ne '\e[5 q'
-}
-_fix_cursor() {
-  echo -ne '\e[5 q'
-}
-precmd_functions+=(_fix_cursor)
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 # FZF
 fzf_init() {
   export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --color=always --style=numbers --line-range=:500 {} || ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
-  export FZF_DEFAULT_COMMAND='ag --hidden --depth 5 --ignore .git -g ""'
+  export FZF_DEFAULT_COMMAND='ag --hidden --depth 5 -g ""'
   export FZF_COMPLETION_TRIGGER='\'
   export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --color=always --style=numbers --line-range=:500 {} || ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
   _fzf_compgen_path() {
     fd --hidden --follow --exclude ".git" . "$1"
   }
-
   # Use fd to generate the list for directory completion
   _fzf_compgen_dir() {
     fd --type d --hidden --follow --exclude ".git" . "$1"
   }
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
 
 
@@ -158,30 +156,17 @@ ranger () {
   local IFS=$'\t\n'
   local tempfile="$(mktemp -t tmp.XXXXXX)"
   local ranger_cmd=(
-  command
-  ranger
-  --cmd="map q chain shell echo %d > "$tempfile"; quitall!"
-)
-${ranger_cmd[@]} "$@"
-if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-  cd -- "$(cat "$tempfile")" || return
-fi
-command rm -f -- "$tempfile" 2>/dev/null
+    command
+    ranger
+    --cmd="map q chain shell echo %d > "$tempfile"; quitall!"
+  )
+  ${ranger_cmd[@]} "$@"
+  if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+    cd -- "$(cat "$tempfile")" || return
+  fi
+  command rm -f -- "$tempfile" 2>/dev/null
 }
 
-
-# NVM
-nvm_init () {
-  export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-  export NVM_DIR="$HOME/.nvm"
-  # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-  export PATH=$HOME/.nvm/versions/node/v12.18.0/bin/:$PATH
-}
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
 conda_init () {
   __conda_setup="$('/home/ourongxing/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
@@ -195,15 +180,15 @@ conda_init () {
   fi
   unset __conda_setup
   conda activate python36
-  # <<< conda initialize <<<
 }
+
+# fnm
+export PATH=/home/ourongxing/.fnm:$PATH
+eval "`fnm env`"
+
+zsh-defer conda_init
+zsh-defer fzf_init
+zsh-defer vimode_init
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-### End of Zinit's installer chunk
-
-zsh-defer conda_init
-zsh-defer nvm_init
-zsh-defer fzf_init
-
-source /home/ourongxing/.config/broot/launcher/bash/br
